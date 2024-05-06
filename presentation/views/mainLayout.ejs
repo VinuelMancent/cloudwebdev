@@ -1,0 +1,54 @@
+<html>
+<head>
+    <style>
+        #pageContainer {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        #pageContainer #headContainer {
+            background: blue;
+            width: 100%;
+            height: 100px;
+        }
+        #pageContainer #bodyContainer {
+            background: yellow;
+            display: flex;
+            flex-grow: 1;
+            padding: 10px;
+        }
+        #mainContentContainer {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="pageContainer">
+        <div id="headContainer">
+            <img src="benz_logo.jpeg" style="height: 80px;"/>
+            <form>
+                <button class="navbutton" type="reset" onclick="location.href=`/`">
+                    Home
+                </button>
+
+                <button class="navbutton" type="reset" onclick="location.href=`/configurator`">
+                    Modelle
+                </button>
+
+                <button class="navbutton" type="reset" onclick="location.href=`https://sentry.io/answers/`">
+                    Testfahrten
+                </button>
+
+                <button class="navbutton" type="reset" onclick="location.href=`https://sentry.io/answers/`">
+                    merch
+                </button>
+            </form>
+        </div>
+        <div id="bodyContainer">
+            <div id="mainContentContainer">
+                <%- body %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
