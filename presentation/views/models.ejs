@@ -1,9 +1,115 @@
 <html>
 <head>
+    <title>Hollerith Automotive</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .model {
+            width: 45%;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        .model:hover img {
+            transform: scale(1.05);
+        }
+        .model img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px 10px 0 0;
+            transition: transform 0.3s ease;
+        }
+        .model-name {
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            color: #333;
+            position: relative;
+            z-index: 1;
+            background-color: white;
+        }
+        .button-container {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #555;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
     </style>
 </head>
 <body>
-    <a href="/configurator/hyperion_halo">Hyperion Halo</a>
+    <h1>Modelle</h1>
+    <div class="container">
+        <div class="model">
+            <div class="img-container">
+                <img src="https://images-porsche.imgix.net/-/media/787664363FDE4686BD0A6316DBB8422E_24208D9122004DDEBDB1245018D4AB12_718---Desktop?iar=0&w=590&ar=3%3A4&q=85&auto=format" alt="Modell 1">
+            </div>
+            <div class="model-name">Hyperion Halo
+                <div class="button-container">
+                    <button class="button" onclick="location.href=`/configurator/Hyperion Halo`">Zum Konfigurator</button>
+                </div>
+            </div>
+        </div>
+        <div class="model">
+            <div class="img-container"> 
+                <img src="https://images-porsche.imgix.net/-/media/6937027C36EC4613B14E2F8F91807228_63826849F51646C1941F336FCD9C1F95_911---Desktop?iar=0&w=590&ar=3%3A4&q=85&auto=format" alt="Modell 2">
+            </div>
+            <div class="model-name">Traverse
+                <div class="button-container">
+                    <button class="button" onclick="location.href=`/configurator/Traverse`">Zum Konfigurator</button>
+                </div>
+            </div>
+        </div>
+        <div class="model">
+            <div class="img-container">
+                <img src="https://images-porsche.imgix.net/-/media/D9863281BEC14473AE2EAD15A724142B_70E074CAEB5047CFA2B6F78741291C55_Berlin---Desktop?iar=0&w=590&ar=3%3A4&q=85&auto=format" alt="Modell 3">
+            </div>
+            <div class="model-name">Modell 3
+                <div class="button-container">
+                    <button class="button">Zum Konfigurator</button>
+                </div>
+            </div>
+        </div>
+        <div class="model">
+            <div class="img-container">
+                <img src="https://images-porsche.imgix.net/-/media/657C1C9232C0426583987BC10E7EAE09_43BCA3CAA9C74D61A1A618C9C592CE9E_Cayenne---Desktop?iar=0&w=590&ar=3%3A4&q=85&auto=format" alt="Modell 4">
+            </div>
+            <div class="model-name">Modell 4
+                <div class="button-container">
+                    <button class="button">Zum Konfigurator</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
