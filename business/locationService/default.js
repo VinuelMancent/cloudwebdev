@@ -6,7 +6,7 @@ app.use(express.json())
 const PORT = 81
 const mexiko = {"name": "Mexiko Cancun", "lat": 21.17429, "long": -86.84656}
 const lissabon = {"name": "Lissabon", "lat": 38.736946, "long": -9.142685}
-const monaco = {"name": "Monaco", "lat": 43.733334, "long": -7.416667}
+const monaco = {"name": "Monaco", "lat": 43.733334, "long": 7.416667}
 const mailand = {"name": "Mailand", "lat": 45.464664, "long": 9.188540}
 const zürich = {"name": "Zürich", "lat": 47.36667, "long": 8.55}
 const hhz = {"name": "HHZ Böblingen", "lat": 48.68212, "long": 9.01171}
