@@ -1,11 +1,123 @@
 <html>
 <head>
+    <title>Hollerith Automotive</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0px;
+            padding: 0px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .product {
+            width: 45%;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        .product:hover img {
+            transform: scale(1.05);
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px 10px 0 0;
+            transition: transform 0.3s ease;
+        }
+        .product-name {
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            color: #333;
+            position: relative;
+            z-index: 1;
+            background-color: white;
+        }
+        .button-container {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        .product-button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .product-button:hover {
+            background-color: #555;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
     </style>
 </head>
-<body>
-<h1>Merch</h1>
 
+<body>
+<h1>Produkte</h1>
+<div class="container">
+
+    <div class="product">
+        <div class="img-container">
+            <img src="/Merch_Tasse.png" alt="Merch_Tasse">
+        </div>
+        <div class="product-name">Merch Tasse 
+            <div class="button-container">
+                <button class="product-button">Produkt anzeigen</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="product">
+        <div class="img-container"> 
+            <img src="/Merch_Cap.png" alt="Merch_Cap 2">
+        </div>
+        <div class="model-name">Merch Cap 
+            <div class="button-container">
+                <button class="product-button">Produkt anzeigen</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="product">
+        <div class="img-container">
+            <img src="/Merch_Pullover.png" alt="Merch_Pullover">
+        </div>
+        <div class="model-name">Merch Pullover
+            <div class="button-container">
+                <button class="product-button">Produkt anzeigen</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="product">
+        <div class="img-container">
+            <img src="/Merch_TShirt_Weiss.png" alt="Merch_TShirt_Weiss">
+        </div>
+        <div class="model-name">Merch TShirt Weiss
+            <div class="button-container">
+                <button class="product-button">Produkt anzeigen</button>
+            </div>
+        </div>
+
+    </div>
     
+</div>
+
 </body>
 </html>
