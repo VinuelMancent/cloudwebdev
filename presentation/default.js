@@ -22,8 +22,14 @@ app.get("/", async function (req,res){
     });
 });
 
-app.get("/configurator", function (req, res){
-    res.render("configurator.ejs")
+app.get("/models", function (req, res){
+    res.render("models.ejs")
+})
+
+app.get("/configurator/:model", function (req, res){
+    res.render("configurator.ejs", {
+        model:  req.params.model
+    })
 })
 
 app.listen(PORT, function (err) {
