@@ -32,6 +32,14 @@ app.get("/configurator/:model", function (req, res){
     })
 })
 
+app.get("/testdrive", function (req, res){
+    res.render("testdrive.ejs")
+})
+
+app.get("/merch", function (req, res){
+    res.render("merchshop.ejs")
+})
+
 app.listen(PORT, function (err) {
     if (err) console.log(err);
     console.log("Server listening on PORT", PORT);
