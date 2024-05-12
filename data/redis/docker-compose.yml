@@ -3,10 +3,11 @@ services:
     image: redis:alpine
     volumes:
       - "./healthchecks:/healthchecks"
+    ports:
+      - "6379:6379"
     healthcheck:
       test: /healthchecks/redis.sh
       interval: "5s"
-    networks:
-      - back-tier
+
 volumes:
   redis-data:
