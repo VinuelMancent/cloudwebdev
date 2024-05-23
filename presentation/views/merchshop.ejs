@@ -66,6 +66,33 @@
             margin-bottom: 30px;
         }
     </style>
+    <script>
+        const redisUrl = ""
+        // **************************************************************************************************************
+        // Adds a passed item to the shopping cart, stores the cart, and refreshes its view
+        // **************************************************************************************************************
+        function addItemToShoppingCart(productName, productPrice) {
+            fetch(`${redisUrl}/cart`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+                        name: productName,
+                        price: productPrice
+                    }
+                )
+            })
+                .then(response => response.json())
+                .then(cartContent => {
+                    shoppingCartContent = cartContent;
+                    refreshShoppingCartView();
+
+                });
+        }
+    </script>
 </head>
 
 <body>
@@ -114,10 +141,10 @@
                 <button class="product-button">Produkt anzeigen</button>
             </div>
         </div>
-
     </div>
     
 </div>
 
 </body>
 </html>
+
