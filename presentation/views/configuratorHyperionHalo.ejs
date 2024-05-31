@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperion Halo Konfigurator</title>
+    <style>
+        .container {
+            display: flex;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        body{
+            font-family: Arial, sans-serif;
+        }
+        .car-image {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .car-details {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .car-details h2 {
+            margin-top: 0;
+        }
+
+        .accordion {
+            margin-bottom: 20px;
+        }
+
+        .accordion-header {
+            background-color: #f8f9fa; /* Hintergrundfarbe des Headers */
+            border-bottom: 1px solid #ccc; /* Unterstreichung */
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease; /* Weicher Übergangseffekt */
+        }
+
+        .accordion-header:hover {
+            background-color: #e9ecef; /* Farbwechsel beim Hover */
+        }
+
+        .header-title {
+            font-size: 18px;
+            color: #333; /* Textfarbe des Headers */
+        }
+
+        .arrow {
+            width: 10px;
+            height: 10px;
+            border-left: 2px solid #333; /* Pfeilstrichfarbe */
+            border-bottom: 2px solid #333; /* Pfeilstrichfarbe */
+            transform: rotate(-45deg); /* Pfeil nach unten */
+            transition: transform 0.3s ease; /* Weicher Übergangseffekt für die Rotation */
+        }
+
+        .active .arrow {
+            transform: rotate(135deg); /* Pfeil nach oben, wenn das Akkordeon geöffnet ist */
+        }
+
+        .panel {
+            display: none;
+            padding: 15px;
+        }
+
+        .active .panel {
+            display: block;
+        }
+
+        .color-option .selected {
+            border: 2px solid black; /* Schwarzer Rahmen um die ausgewählte Farbe */
+        }
+
+        .color-option {
+            display:table-cell;
+            width: 25%;
+            padding: 0 3px;
+        }
+
+        .color-box {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #999;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            background-size: 200% 100%;
+            background-position: right;
+        }
+
+        .color-box:hover {
+            background-position: left;
+        }
+
+        .color-name {
+            font-size: 14px;
+        }
+
+        .wheel-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .wheel-image {
+            width: 60px;
+            height: 60px;
+            background-size: cover;
+            margin-right: 10px;
+        }
+
+        .winter {
+            background-image: url('https://www.suncoastparts.com/mm5/graphics/00000002/SKU9Y0WW20SPR.jpg');
+        }
+
+        .summer {
+            background-image: url('https://shop.porschedowntowntoronto.com/cdn/shop/products/TE18J4ATD0112_low_22-Zoll_Cayenne_Sport_Classic_Sommerkomplettradsatz_huge_2048x.jpg?v=1654616497');
+        }
+
+        .sport {
+            background-image: url('https://shop.porschedowntowntoronto.com/cdn/shop/products/TE18J4ATD0105_low_21-Zoll_Cayenne_Exclusive_Design_Sommerkomplettradsatz_lackiert_in_Schwarz_hochglanz_huge_1_2048x.jpg?v=1654695305');
+        }
+
+        .rim-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .rim-image {
+            width: 60px;
+            height: 60px;
+            background-size: cover;
+            margin-right: 10px;
+        }
+
+        .budget {
+            background-image: url('street_style_rim.png');
+        }
+
+        .mid-range {
+            background-image: url('luxury-rim.png');
+        }
+
+        .premium {
+            background-image: url('exclusive-rim.png');
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="car-image">
+                <img src="/Hyperion_Halo/space_grey.jpg" alt="Hyperion Halo">
+            </div>
+            <div class="car-details">
+                <h2>Hyperion Halo</h2>
+                <p>Eine kurze Beschreibung des Fahrzeugs...</p>
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <div class="header-title">Farbe</div>
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="panel">
+                        <div class="color-option">
+                            <div class="color-box" style="background-image:linear-gradient(90deg, #9ca6af 19%, #515559 50%);"></div>
+                            <div class="color-name">Space Grey</div>
+                        </div>
+                        <div class="color-option">
+                            <div class="color-box" style="background-image:linear-gradient(90deg, #e93f45 19%, #9c1518 50%);"></div>
+                            <div class="color-name">Cherry Red</div>
+                        </div>
+                        <div class="color-option">
+                            <div class="color-box" style="background-image:linear-gradient(90deg, #00b46c 19%, #017a59 50%);"></div>
+                            <div class="color-name">Emerald Green</div>
+                        </div>
+                        <div class="color-option">
+                            <div class="color-box" style="background-image:linear-gradient(90deg, #0084bf 19%, #bddbf5 50%);"></div>
+                            <div class="color-name">Ice Blue</div>
+                        </div>
+                    </div>     
+                </div>                
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <div class="header-title">Räder</div>
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="panel">
+                        <div class="wheel-option">
+                            <div class="wheel-image winter"></div>
+                            <div class="wheel-name">Winterräder</div>
+                        </div>
+                        <div class="wheel-option">
+                            <div class="wheel-image summer"></div>
+                            <div class="wheel-name">Sommerreifen</div>
+                        </div>
+                        <div class="wheel-option">
+                            <div class="wheel-image sport"></div>
+                            <div class="wheel-name">Sportreifen</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion">
+                    <div class="accordion-header">
+                        <div class="header-title">Felgen</div>
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="panel">
+                        <div class="rim-option">
+                            <div class="rim-image budget"></div>
+                            <div class="rim-name">Street Style</div>
+                        </div>
+                        <div class="rim-option">
+                            <div class="rim-image mid-range"></div>
+                            <div class="rim-name">Urban Chic</div>
+                        </div>
+                        <div class="rim-option">
+                            <div class="rim-image premium"></div>
+                            <div class="rim-name">Luxury Elite</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <script>
+                var carImage = document.querySelector(".car-image img");
+                // Panel "Farbe" beim Laden der Seite automatisch öffnen
+                document.addEventListener("DOMContentLoaded", function() {
+                    var colorPanel = document.querySelector(".accordion .accordion-header");
+                    var colorOptions = document.querySelectorAll(".color-option");
+                    
+                    colorPanel.click(); // Öffne das Panel "Farbe"
+                    
+                    // Wähle die Farbe "Space Grey" aus
+                    colorOptions.forEach(function(option) {
+                        if (option.querySelector(".color-name").textContent === "Space Grey") {
+                            option.querySelector(".color-box").classList.add("selected");
+                        }
+                    });
+                    
+                    // Füge Klick-Ereignis nur zur Überschrift hinzu, um das Akkordeon zu steuern
+                    colorPanel.addEventListener("click", function() {
+                        var panel = this.nextElementSibling;
+                        panel.classList.toggle("active");
+                    });
+                    
+                    // Füge Klick-Ereignis zu den Farboptionen hinzu
+                    colorOptions.forEach(function(option) {
+                        option.addEventListener("click", function(event) {
+                            // Verhindere, dass das Klickereignis auf das Akkordeon weitergeleitet wird
+                            event.stopPropagation();
+                            
+                            // Entferne "selected" Klasse von allen Farboptionen
+                            colorOptions.forEach(function(opt) {
+                                opt.querySelector(".color-box").classList.remove("selected");
+                            });
+                            // Füge "selected" Klasse zur ausgewählten Farboption hinzu
+                            this.querySelector(".color-box").classList.add("selected");
+
+                             // Ändere das Bild entsprechend der ausgewählten Farbe
+                            var colorName = this.querySelector(".color-name").textContent;
+                            if (colorName === "Space Grey") {
+                                carImage.src = "/Hyperion_Halo/space_grey.jpg";
+                            } else if (colorName === "Cherry Red") {
+                                carImage.src = "/Hyperion_Halo/cherry_red.jpg";
+                            } else if (colorName === "Emerald Green") {
+                                carImage.src = "/Hyperion_Halo/emerald_green.jpg";
+                            } else if (colorName === "Ice Blue") {
+                                carImage.src = "/Hyperion_Halo/ice_blue.jpg";
+                            }
+                        });
+                    });
+                });
+                const accordions = document.querySelectorAll('.accordion');
+
+                accordions.forEach(accordion => {
+                    accordion.addEventListener('click', function () {
+                        this.classList.toggle('active');
+                        const panel = this.querySelector('.panel');
+                        if (panel.style.display === 'block') {
+                            panel.style.display = 'none';
+                        } else {
+                            panel.style.display = 'block';
+                        }
+                    });
+                });
+            </script>
+            </body>
+</html>
+
+

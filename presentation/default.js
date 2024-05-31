@@ -26,6 +26,10 @@ app.get("/models", function (req, res){
     res.render("models.ejs")
 })
 
+app.get("/configuratorHyperionHalo", function (req, res){
+    res.render("configuratorHyperionHalo.ejs")
+})
+
 app.get("/configurator/:model", function (req, res){
     res.render("configurator.ejs", {
         model:  req.params.model
