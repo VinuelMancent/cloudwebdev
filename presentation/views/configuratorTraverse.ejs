@@ -341,7 +341,7 @@
                                             <li><strong>Reifen:</strong> <span id="selectedTire">-</span></li>
                                             <li><strong>Felgen:</strong> <span id="selectedRim">-</span></li>
                                         </ul>
-                                        <button class="order-button">Jetzt kaufen</button>
+                                        <button class="order-button" id="orderButton">Jetzt kaufen</button>
                                     </div>
                                 <% } %>
                         </div>
@@ -350,6 +350,7 @@
             </div>
         </div>
     </div>
+    <%- include('orderPopup.ejs') %>
     <script>
         // Select Step
         document.querySelectorAll('.step').forEach(function(step) {
@@ -437,6 +438,17 @@
 
                 this.classList.add("selected");
             });
+        });
+
+         // Open Order Popup
+         document.getElementById('orderButton').addEventListener('click', function() {
+            fetch('/orderPopup')
+                .then(response => response.text())
+                .then(html => {
+                    document.body.insertAdjacentHTML('beforeend', html);
+                    document.getElementById('orderPopup').style.display = 'block';
+                })
+                .catch(error => console.error('Error fetching popup:', error));
         });
     </script>
 </body>
