@@ -3,126 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hyperion Halo Konfigurator</title>
+    <title>Konfigurator</title>
     <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
         .container {
             display: flex;
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 1200px;
+            margin: 40px auto;
             background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            margin-top: 20px;
         }
-        body{
-            font-family: Arial, sans-serif;
-        }
+
         .car-image {
-            flex: 1;
+            flex: 1.5;
             overflow: hidden;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .car-image img {
             width: 100%;
             height: auto;
-            border-radius: 10px 0 0 10px;
+            border-radius: 15px 0 0 15px;
         }
 
         .car-details {
-            flex: 1;
-            padding: 20px;
+            flex: 2;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
         }
 
         .car-details h2 {
             margin-top: 0;
+            font-size: 2.5em;
+            font-weight: 700;
         }
 
-        .accordion {
-            margin-bottom: 20px;
+        .stepper-container {
+            flex-grow: 1;
+            margin-top: 20px;
         }
 
-        .accordion-header {
-            background-color: #f8f9fa; /* Hintergrundfarbe des Headers */
-            border-bottom: 1px solid #ccc; /* Unterstreichung */
-            padding: 15px;
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            margin-bottom: 30px;
+            padding-left: 30px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background-color: #ccc;
+        }
+
+        .step.active::before {
+            background-color: #333;
+        }
+
+        .step:hover {
+            background-color: #f9f9f9;
+        }
+
+        .step.active {
+            background-color: #f3f3f3;
+        }
+
+        .step-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            transition: background-color 0.3s ease; /* Weicher Übergangseffekt */
+            gap: 20px;
         }
 
-        .accordion-header:hover {
-            background-color: #e9ecef; /* Farbwechsel beim Hover */
+        .step-indicator,
+        .step-description {
+            margin-bottom: 10px;
+            margin-top: 10px;
         }
 
-        .header-title {
-            font-size: 18px;
-            color: #333; /* Textfarbe des Headers */
+        .step-indicator {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5em;
         }
 
-        .arrow {
-            width: 10px;
-            height: 10px;
-            border-left: 2px solid #333; /* Pfeilstrichfarbe */
-            border-bottom: 2px solid #333; /* Pfeilstrichfarbe */
-            transform: rotate(-45deg); /* Pfeil nach unten */
-            transition: transform 0.3s ease; /* Weicher Übergangseffekt für die Rotation */
+        .step-description {
+            font-size: 22px;
+            font-weight: bold;
         }
 
-        .active .arrow {
-            transform: rotate(135deg); /* Pfeil nach oben, wenn das Akkordeon geöffnet ist */
-        }
-
-        .panel {
+        .step-content {
             display: none;
-            padding: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
 
-        .active .panel {
-            display: block;
-        }
-
-        .color-option .selected {
-            border: 2px solid black; /* Schwarzer Rahmen um die ausgewählte Farbe */
-        }
-
-        .color-option {
-            display:table-cell;
-            width: 25%;
-            padding: 0 3px;
-        }
-
-        .color-box {
-            width: 100%;
-            height: 60px;
-            border: 1px solid #999;
-            border-radius: 5px;
-            margin-bottom: 5px;
-            background-size: 200% 100%;
-            background-position: right;
-        }
-
-        .color-box:hover {
-            background-position: left;
-        }
-
-        .color-name {
-            font-size: 14px;
-        }
-
-        .wheel-option {
+        .step.active .step-content {
             display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .option-container {
+            display: flex;
+            flex-direction: column;
             align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            flex: 1 0 21%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .option-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .color-option,
+        .wheel-option,
+        .rim-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            background-color: white;
             margin-bottom: 10px;
         }
 
-        .wheel-image {
-            width: 60px;
-            height: 60px;
+        .color-option:hover,
+        .wheel-option:hover,
+        .rim-option:hover {
+            transform: translateY(-5px);
+        }
+
+        .color-box {
+            width: 80px;
+            height: 50px;
+            margin-bottom: 5px;
+        }
+
+        .wheel-image,
+        .rim-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
             background-size: cover;
-            margin-right: 10px;
+            background-position: center;
+        }
+
+        .option-name {
+            margin-top: 10px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .selected {
+            border: 3px solid #333;
+            box-sizing: border-box;
+        }
+
+        .order-overview {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 540px;
+            margin-bottom: 10px;
+        }
+
+        .order-overview ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .order-overview li {
+            font-size: 18px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .order-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: absolute;
+            right: 40px;
+            bottom: 30px;
+        }
+
+        .order-button:hover {
+            background-color: #555;
         }
 
         .winter {
@@ -134,20 +241,7 @@
         }
 
         .sport {
-            background-image: url('https://shop.porschedowntowntoronto.com/cdn/shop/products/TE18J4ATD0105_low_21-Zoll_Cayenne_Exclusive_Design_Sommerkomplettradsatz_lackiert_in_Schwarz_hochglanz_huge_1_2048x.jpg?v=1654695305');
-        }
-
-        .rim-option {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .rim-image {
-            width: 60px;
-            height: 60px;
-            background-size: cover;
-            margin-right: 10px;
+            background-image: url('https://www.suncoastparts.com/mm5/graphics/00000002/SKU9Y0WW20SPR.jpg');
         }
 
         .budget {
@@ -162,145 +256,192 @@
             background-image: url('exclusive-rim.png');
         }
     </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="car-image">
-                <img src="/Hyperion_Halo/space_grey.jpg" alt="Hyperion Halo">
+</head>
+<body>
+    <div class="container">
+        <div class="car-image">
+            <img id="car-image" src="/Hyperion_Halo/space_grey.jpg" alt="Hyperion Halo">
+        </div>
+        <div class="car-details">
+            <h2>Hyperion Halo</h2>
+            <p>Eine kurze Beschreibung des Fahrzeugs...</p>
+            <div class="stepper-container">
+                <% const steps = [
+                    { description: 'Farbe', status: 'active', contentId: 'step1' },
+                    { description: 'Reifen', status: '', contentId: 'step2' },
+                    { description: 'Felgen', status: '', contentId: 'step3' },
+                    { description: 'Bestellübersicht', status: '', contentId: 'step4' },
+                ]; %>
+        
+                <% steps.forEach((step, index)=> { %>
+                    <div class="step <%= step.status %>">
+                        <div class="step-header">
+                            <div class="step-indicator">
+                                <%= index + 1 %>
+                            </div>
+                            <div class="step-description">
+                                <%= step.description %>
+                            </div>
+                        </div>
+                        <div class="step-content" id="<%= step.contentId %>">
+                            <% if(index===0) { %>
+                                <div class="color-option">
+                                    <div class="color-box"
+                                        style="background-image:linear-gradient(90deg, #9ca6af 19%, #515559 50%);"></div>
+                                    <div class="color-name">Space Grey</div>
+                                </div>
+                                <div class="color-option">
+                                    <div class="color-box" style="background-image:linear-gradient(90deg, #e93f45 19%, #9c1518 50%);">
+                                    </div>
+                                    <div class="color-name">Cherry Red</div>
+                                </div>
+                                <div class="color-option">
+                                    <div class="color-box" style="background-image:linear-gradient(90deg, #00b46c 19%, #017a59 50%);">
+                                    </div>
+                                    <div class="color-name">Emerald Green</div>
+                                </div>
+                                <div class="color-option">
+                                    <div class="color-box" style="background-image:linear-gradient(90deg, #0084bf 19%, #bddbf5 50%);">
+                                    </div>
+                                    <div class="color-name">Ice Blue</div>
+                                </div>
+                                <% } %>
+                            <% if(index===1) { %>
+                                <div class="wheel-option">
+                                    <div class="wheel-image winter"></div>
+                                    <div class="option-name">Winterräder</div>
+                                </div>
+                                <div class="wheel-option">
+                                    <div class="wheel-image summer"></div>
+                                    <div class="option-name">Sommerreifen</div>
+                                </div>
+                                <div class="wheel-option">
+                                    <div class="wheel-image sport"></div>
+                                    <div class="option-name">Sportreifen</div>
+                                </div>
+                                <% } %>
+                                <% if(index===2) { %>
+                                    <div class="rim-option">
+                                        <div class="rim-image budget"></div>
+                                        <div class="option-name">Street Style</div>
+                                    </div>
+                                    <div class="rim-option">
+                                        <div class="rim-image mid-range"></div>
+                                        <div class="option-name">Urban Chic</div>
+                                    </div>
+                                    <div class="rim-option">
+                                        <div class="rim-image premium"></div>
+                                        <div class="option-name">Luxury Elite</div>
+                                    </div>
+                                <% } %>
+                                <% if(index === 3) { %>
+                                    <div class="order-overview">
+                                        <ul>
+                                            <li><strong>Fahrzeug:</strong> Hyperion Halo</li>
+                                            <li><strong>Farbe:</strong> <span id="selectedColor">-</span></li>
+                                            <li><strong>Reifen:</strong> <span id="selectedTire">-</span></li>
+                                            <li><strong>Felgen:</strong> <span id="selectedRim">-</span></li>
+                                        </ul>
+                                        <button class="order-button">Jetzt kaufen</button>
+                                    </div>
+                                <% } %>
+                        </div>
+                    </div>
+                <% }) %>
             </div>
-            <div class="car-details">
-                <h2>Hyperion Halo</h2>
-                <p>Eine kurze Beschreibung des Fahrzeugs...</p>
-                <div class="accordion">
-                    <div class="accordion-header">
-                        <div class="header-title">Farbe</div>
-                        <div class="arrow"></div>
-                    </div>
-                    <div class="panel">
-                        <div class="color-option">
-                            <div class="color-box" style="background-image:linear-gradient(90deg, #9ca6af 19%, #515559 50%);"></div>
-                            <div class="color-name">Space Grey</div>
-                        </div>
-                        <div class="color-option">
-                            <div class="color-box" style="background-image:linear-gradient(90deg, #e93f45 19%, #9c1518 50%);"></div>
-                            <div class="color-name">Cherry Red</div>
-                        </div>
-                        <div class="color-option">
-                            <div class="color-box" style="background-image:linear-gradient(90deg, #00b46c 19%, #017a59 50%);"></div>
-                            <div class="color-name">Emerald Green</div>
-                        </div>
-                        <div class="color-option">
-                            <div class="color-box" style="background-image:linear-gradient(90deg, #0084bf 19%, #bddbf5 50%);"></div>
-                            <div class="color-name">Ice Blue</div>
-                        </div>
-                    </div>     
-                </div>                
-                <div class="accordion">
-                    <div class="accordion-header">
-                        <div class="header-title">Räder</div>
-                        <div class="arrow"></div>
-                    </div>
-                    <div class="panel">
-                        <div class="wheel-option">
-                            <div class="wheel-image winter"></div>
-                            <div class="wheel-name">Winterräder</div>
-                        </div>
-                        <div class="wheel-option">
-                            <div class="wheel-image summer"></div>
-                            <div class="wheel-name">Sommerreifen</div>
-                        </div>
-                        <div class="wheel-option">
-                            <div class="wheel-image sport"></div>
-                            <div class="wheel-name">Sportreifen</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion">
-                    <div class="accordion-header">
-                        <div class="header-title">Felgen</div>
-                        <div class="arrow"></div>
-                    </div>
-                    <div class="panel">
-                        <div class="rim-option">
-                            <div class="rim-image budget"></div>
-                            <div class="rim-name">Street Style</div>
-                        </div>
-                        <div class="rim-option">
-                            <div class="rim-image mid-range"></div>
-                            <div class="rim-name">Urban Chic</div>
-                        </div>
-                        <div class="rim-option">
-                            <div class="rim-image premium"></div>
-                            <div class="rim-name">Luxury Elite</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-            <script>
-                var carImage = document.querySelector(".car-image img");
-                // Panel "Farbe" beim Laden der Seite automatisch öffnen
-                document.addEventListener("DOMContentLoaded", function() {
-                    var colorPanel = document.querySelector(".accordion .accordion-header");
-                    var colorOptions = document.querySelectorAll(".color-option");
-                    
-                    colorPanel.click(); // Öffne das Panel "Farbe"
-                    
-                    // Wähle die Farbe "Space Grey" aus
-                    colorOptions.forEach(function(option) {
-                        if (option.querySelector(".color-name").textContent === "Space Grey") {
-                            option.querySelector(".color-box").classList.add("selected");
-                        }
-                    });
-                    
-                    // Füge Klick-Ereignis nur zur Überschrift hinzu, um das Akkordeon zu steuern
-                    colorPanel.addEventListener("click", function() {
-                        var panel = this.nextElementSibling;
-                        panel.classList.toggle("active");
-                    });
-                    
-                    // Füge Klick-Ereignis zu den Farboptionen hinzu
-                    colorOptions.forEach(function(option) {
-                        option.addEventListener("click", function(event) {
-                            // Verhindere, dass das Klickereignis auf das Akkordeon weitergeleitet wird
-                            event.stopPropagation();
-                            
-                            // Entferne "selected" Klasse von allen Farboptionen
-                            colorOptions.forEach(function(opt) {
-                                opt.querySelector(".color-box").classList.remove("selected");
-                            });
-                            // Füge "selected" Klasse zur ausgewählten Farboption hinzu
-                            this.querySelector(".color-box").classList.add("selected");
-
-                             // Ändere das Bild entsprechend der ausgewählten Farbe
-                            var colorName = this.querySelector(".color-name").textContent;
-                            if (colorName === "Space Grey") {
-                                carImage.src = "/Hyperion_Halo/space_grey.jpg";
-                            } else if (colorName === "Cherry Red") {
-                                carImage.src = "/Hyperion_Halo/cherry_red.jpg";
-                            } else if (colorName === "Emerald Green") {
-                                carImage.src = "/Hyperion_Halo/emerald_green.jpg";
-                            } else if (colorName === "Ice Blue") {
-                                carImage.src = "/Hyperion_Halo/ice_blue.jpg";
-                            }
-                        });
-                    });
+        </div>
+    </div>
+    <script>
+        // Select Step
+        document.querySelectorAll('.step').forEach(function(step) {
+            step.addEventListener('click', function() {
+                // Deaktiviere alle Schritte
+                document.querySelectorAll('.step').forEach(function(s) {
+                    s.classList.remove('active');
                 });
-                const accordions = document.querySelectorAll('.accordion');
 
-                accordions.forEach(accordion => {
-                    accordion.addEventListener('click', function () {
-                        this.classList.toggle('active');
-                        const panel = this.querySelector('.panel');
-                        if (panel.style.display === 'block') {
-                            panel.style.display = 'none';
-                        } else {
-                            panel.style.display = 'block';
-                        }
-                    });
+                document.querySelectorAll('.step-content').forEach(function(content) {
+                    content.style.display = 'none';
                 });
-            </script>
-            </body>
+
+                this.classList.add('active');
+
+                var contentId = this.querySelector('.step-content').id;
+                document.getElementById(contentId).style.display = 'flex';
+            });
+        });
+    
+        //  Select Color
+        var colorOptions = document.querySelectorAll('.color-option');
+        colorOptions.forEach(function(option) {
+            option.addEventListener("click", function(event) {
+                event.stopPropagation();
+    
+                var allColorBoxes = document.querySelectorAll('.color-option');
+                allColorBoxes.forEach(function(box) {
+                    box.classList.remove("selected");
+                });
+    
+                this.classList.add("selected");
+    
+                var colorName = this.querySelector(".color-name").textContent;
+                var carImage = document.getElementById("car-image");
+    
+                if (colorName === "Space Grey") {
+                    carImage.src = "/Hyperion_Halo/space_grey.jpg";
+                } else if (colorName === "Cherry Red") {
+                    carImage.src = "/Hyperion_Halo/cherry_red.jpg";
+                } else if (colorName === "Emerald Green") {
+                    carImage.src = "/Hyperion_Halo/emerald_green.jpg";
+                } else if (colorName === "Ice Blue") {
+                    carImage.src = "/Hyperion_Halo/ice_blue.jpg";
+                }
+    
+                var selectedColor = document.getElementById("selectedColor");
+                selectedColor.textContent = colorName;
+    
+            });
+        });
+    
+        // Select Wheel
+        var tireOptions = document.querySelectorAll('.wheel-option');
+        tireOptions.forEach(function(option) {
+            option.addEventListener("click", function(event) {
+                event.stopPropagation();
+    
+                var selectedTire = document.getElementById("selectedTire");
+                var tireName = this.parentNode.querySelector('.option-name').textContent;
+                selectedTire.textContent = tireName;
+    
+                var allOptions = this.closest('.step-content').querySelectorAll('.wheel-option');
+                allOptions.forEach(function(opt) {
+                    opt.classList.remove("selected");
+                });
+    
+                this.classList.add("selected");
+    
+            });
+        });
+    
+        // Select Rim
+        var rimOptions = document.querySelectorAll('.rim-option');
+        rimOptions.forEach(function(option) {
+            option.addEventListener("click", function(event) {
+                event.stopPropagation();
+
+                var selectedRim = document.getElementById("selectedRim");
+                var rimName = this.parentNode.querySelector('.option-name').textContent;
+                selectedRim.textContent = rimName;
+    
+                var allOptions = this.closest('.step-content').querySelectorAll('.rim-option');
+                allOptions.forEach(function(opt) {
+                    opt.classList.remove("selected");
+                });
+
+                this.classList.add("selected");
+            });
+        });
+    </script>
+</body>
 </html>
-
 
