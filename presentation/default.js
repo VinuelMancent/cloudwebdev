@@ -30,6 +30,10 @@ app.get("/configuratorHyperionHalo", function (req, res){
     res.render("configuratorHyperionHalo.ejs")
 })
 
+app.get("/configuratorTraverse", function (req, res){
+    res.render("configuratorTraverse.ejs")
+})
+
 app.get("/configurator/:model", function (req, res){
     res.render("configurator.ejs", {
         model:  req.params.model
