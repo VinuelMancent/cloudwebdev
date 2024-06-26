@@ -69,6 +69,15 @@
 </head>
 
 <body>
+    <script>
+    function addItemToShoppingcart(item){
+        const url = "http://localhost:83/pushItem"
+        async () => await fetch(url, {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            body: JSON.stringify(item), // body data type must match "Content-Type" header
+        });
+    }
+    </script>
 <h1>Produkte</h1>
 <div class="container">
 
@@ -78,7 +87,7 @@
         </div>
         <div class="product-name">Merch Tasse 
             <div class="button-container">
-                <button class="product-button">Produkt anzeigen</button>
+                <button class="product-button">Add to shoppingcart</button>
             </div>
         </div>
     </div>
@@ -89,7 +98,7 @@
         </div>
         <div class="product-name">Merch Cap 
             <div class="button-container">
-                <button class="product-button">Produkt anzeigen</button>
+                <button class="product-button">Add to shoppingcart</button>
             </div>
         </div>
     </div>
@@ -100,7 +109,7 @@
         </div>
         <div class="product-name">Merch Pullover
             <div class="button-container">
-                <button class="product-button">Produkt anzeigen</button>
+                <button class="product-button">Add to shoppingcart</button>
             </div>
         </div>
     </div>
@@ -111,7 +120,7 @@
         </div>
         <div class="product-name">Merch TShirt Weiss
             <div class="button-container">
-                <button class="product-button">Produkt anzeigen</button>
+                <button class="product-button">Add to shoppingcart</button>
             </div>
         </div>
 
