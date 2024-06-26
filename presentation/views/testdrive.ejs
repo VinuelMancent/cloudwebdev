@@ -106,10 +106,9 @@
             <form>
                 <label for="strecke">Rennstrecke</label>
                 <select id="strecke" name="strecke">
-                    <option value="Hockenheimring">Hockenheimring</option>
-                    <option value="Nürburgring">Nürburgring</option>
-                    <option value="Lausitzring">Lausitzring</option>
-                    <option value="Sachsenring">Lausitzring</option>
+                    <% for(var i = 0; i < carsAndTracks.tracks.length; i++) { %>
+                        <option value="<%=carsAndTracks.tracks[i].track %>"><%=carsAndTracks.tracks[i].track %></option>
+                    <% } %>
                 </select>
 
                 <label for="auto">Modell</label>
