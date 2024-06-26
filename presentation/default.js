@@ -63,7 +63,11 @@ app.get("/testdrive", async function (req, res){
 app.get("/merch", async function (req, res){
     //const response = await fetch("http://localhost:85")
     //const jsonresponse = await response.json()
-    const jsonresponse = [{"name":"Merch Tasse","price":9.99,"image":"http://localhost/Merch_Tasse.png"},{"name":"Merch Cap","price":7.99,"image":"http://localhost/Merch_Cap.png"},{"name":"Merch Pullover","price":27.99,"image":"http://localhost/Merch_Pullover.png"},{"name":"Merch TShirt Weiss","price":12.99,"image":"http://localhost/Merch_TShirt_Weiss.png"}]
+    const jsonresponse = [
+        {"name":"Merch Tasse","price":9.99,"image":"http://localhost/Merch_Tasse.png"},
+        {"name":"Merch Cap","price":7.99,"image":"http://localhost/Merch_Cap.png"},
+        {"name":"Merch Pullover","price":27.99,"image":"http://localhost/Merch_Pullover.png"},
+        {"name":"Merch T-Shirt","price":12.99,"image":"http://localhost/Merch_TShirt_Weiss.png"}]
     res.render("merchshop.ejs", { showNavbar: true, merchItems: jsonresponse })
 })
 

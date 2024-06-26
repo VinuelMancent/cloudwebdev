@@ -31,7 +31,7 @@
             height: auto;
         }
 
-        .navbutton-container {
+        .config-button-container {
             display: flex;
             justify-content: center;
             width: 100%;
@@ -40,17 +40,18 @@
             padding: 20px 0;
         }
 
-        .navbutton {
+        .config-button {
             background-color: #ff9903;
             color: white;
             border: none;
             border-radius: 10px;
             font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
+            padding: 15px 30px; 
             transition: background-color 0.3s ease;
         }
-
-        .navbutton:hover {
+        .config-button:hover {
             background-color: #f28500;
         }
 
@@ -114,8 +115,8 @@
             Your browser does not support the video tag.
         </video>
     </div>
-    <div class="navbutton-container">
-        <button class="navbutton" onclick="location.href='/models'">
+    <div class="config-button-container">
+        <button class="config-button" onclick="location.href='/models'">
             Konfiguriere dein Supercar
         </button>
     </div>
