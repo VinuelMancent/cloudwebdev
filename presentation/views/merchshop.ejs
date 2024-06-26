@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <title>Hollerith Automotive</title>
     <style>
@@ -8,6 +9,7 @@
             margin: 0px;
             padding: 0px;
         }
+
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -15,6 +17,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
         }
+
         .product {
             width: 45%;
             margin-bottom: 20px;
@@ -24,43 +27,64 @@
             overflow: hidden;
             position: relative;
         }
+
         .product:hover img {
             transform: scale(1.05);
         }
+
         .product img {
             width: 100%;
             height: auto;
+            z-index: 1;
             border-radius: 10px 10px 0 0;
             transition: transform 0.3s ease;
         }
-        .product-name {
+
+        .product-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 15px;
-            text-align: left;
-            font-weight: bold;
-            color: #333;
             position: relative;
             z-index: 1;
             background-color: white;
         }
-        .button-container {
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-            z-index: 1;
+
+        .product-name {
+            font-weight: bold;
+            color: #333;
+            align-items: center;
         }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
         .product-button {
-            padding: 10px 20px;
-            background-color: #333;
-            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            background-color: #ff9903;
             border: none;
             border-radius: 5px;
+            color: white;
+            font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         .product-button:hover {
-            background-color: #555;
+            background-color: #f28500;
         }
+
+        .product-button svg {
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+        }
+
         h1 {
             text-align: center;
             margin-bottom: 30px;
@@ -70,69 +94,48 @@
 
 <body>
     <script>
-    async function addItemToShoppingcart(item){
-        console.log(`adding item ${JSON.stringify(item)}`)
-        const url = "http://localhost:83/pushItem"
-        await fetch(url, {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
-            mode: "cors", // no-cors, *cors, same-origin
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-            },
-            body: JSON.stringify(item)
-        })
-    }
+        async function addItemToShoppingcart(item) {
+            console.log(`adding item ${JSON.stringify(item)}`)
+            const url = "http://localhost:83/pushItem"
+            await fetch(url, {
+                method: "POST", // *GET, POST, PUT, DELETE, etc.
+                mode: "cors", // no-cors, *cors, same-origin
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                },
+                body: JSON.stringify(item)
+            })
+        }
     </script>
-<h1>Produkte</h1>
-<div class="container">
-
-    <div class="product">
-        <div class="img-container">
-            <img src="/Merch_Tasse.png" alt="Merch_Tasse">
-        </div>
-        <div class="product-name">Merch Tasse 
-            <div class="button-container">
-                <button class="product-button" onclick="addItemToShoppingcart({product: 'tasse', price: 9.99})">Add to shoppingcart</button>
+    <h1>Produkte</h1>
+    <div class="container">
+        <% merchItems.forEach(product=> { %>
+            <div class="product">
+                <div class="img-container">
+                    <img src="<%= product.image %>" alt="<%= product.name %>">
+                </div>
+                <div class="product-details">
+                    <div class="product-name">
+                        <%= product.name %>
+                    </div>
+                    <div class="button-container">
+                        <button class="product-button" onclick="addItemToShoppingcart({product: product.name , price: product.price})">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <g fill="none">
+                                    <path fill="currentColor"
+                                        d="M3 2.25a.75.75 0 0 0 0 1.5zM5 3l.748-.058A.75.75 0 0 0 5 2.25zm16 3l.745.083A.75.75 0 0 0 21 5.25zM5.23 6l-.747.058zm13.109 9.119l.053.748zm-10.355.74l-.053-.749zM3 3.75h2v-1.5H3zm5.037 12.856l10.355-.74l-.107-1.495l-10.354.74zm12.892-3.179l.816-7.344l-1.49-.166l-.816 7.345zM4.252 3.057l.231 3l1.496-.115l-.231-3zm.231 3l.617 8.017l1.495-.115l-.616-8.017zM21 5.25H5.23v1.5H21zm-2.608 10.617a2.75 2.75 0 0 0 2.537-2.44l-1.49-.165a1.25 1.25 0 0 1-1.154 1.109zM7.931 15.11a1.25 1.25 0 0 1-1.336-1.15l-1.495.114a2.75 2.75 0 0 0 2.937 2.532z" />
+                                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2.25"
+                                        d="M8.5 20.5h.01v.01H8.5zm9 0h.01v.01h-.01z" />
+                                </g>
+                            </svg>
+                            <%= product.price.toFixed(2).replace('.', ',' ) %>€
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
+            <% }) %>
     </div>
-
-    <div class="product">
-        <div class="img-container"> 
-            <img src="/Merch_Cap.png" alt="Merch_Cap 2">
-        </div>
-        <div class="product-name">Merch Cap 
-            <div class="button-container">
-                <button class="product-button" onclick="addItemToShoppingcart({product: 'cap', price: 8.99})">Add to shoppingcart</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="product">
-        <div class="img-container">
-            <img src="/Merch_Pullover.png" alt="Merch_Pullover">
-        </div>
-        <div class="product-name">Merch Pullover
-            <div class="button-container">
-                <button class="product-button" onclick="addItemToShoppingcart({product: '', price: 39.99})">Add to shoppingcart</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="product">
-        <div class="img-container">
-            <img src="/Merch_TShirt_Weiss.png" alt="Merch_TShirt_Weiss">
-        </div>
-        <div class="product-name">Merch TShirt Weiss
-            <div class="button-container">
-                <button class="product-button" onclick="addItemToShoppingcart({product: 'shirt', price: 9.99})">Add to shoppingcart</button>
-            </div>
-        </div>
-
-    </div>
-    
-</div>
-
 </body>
+
 </html>
