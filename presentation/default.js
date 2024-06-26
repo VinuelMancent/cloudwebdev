@@ -17,7 +17,8 @@ app.get("/", async function (req,res){
     const response = await fetch("http://localhost:81")
     const jsonresponse = await response.json()
     console.log(jsonresponse)
-    res.render("home.ejs", { showNavbar: true }, {
+    res.render("home.ejs", { 
+        showNavbar: true,
         location: jsonresponse
     });
 });
