@@ -19,23 +19,36 @@ redisClient.on('error', (err) => {
 
 app.get("/getItems", function (req,res){
     redisClient.get("shoppingcartItems").then(function(value){
+        console.log(1)
         if (value != undefined) {
+            console.log(2)
             allItems = JSON.parse(value)
+            console.log(3)
+        }else{
+            console.log(4)
+            allItems = []
         }
-            res.send(allitems)
+            res.send(JSON.stringify(allItems))
         }
     )
 })
 
-app.post("pushItem/:item", function (req, res){
-    const itemToPush = req.params.item
+app.post("/pushItem", function (req, res){
+    allItems = []
+    console.log(req.body)
+    const itemToPush = req.body
     redisClient.get("shoppingcartItems").then(function(value){
         if (value != undefined) {
             allItems = JSON.parse(value)
         }
         allItems.push(itemToPush)
-        redisClient.set("shoppingcartItems", allitems)
+        redisClient.set("shoppingcartItems", JSON.stringify(allItems))
     })
+    res.sendStatus(200)
+})
+
+app.post("clearItems", function (req, res){
+    redisClient.set("shoppingcartItems", [])
     res.sendStatus(200)
 })
 
