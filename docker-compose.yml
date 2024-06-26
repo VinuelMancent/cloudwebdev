@@ -1,29 +1,4 @@
 services:
-
-  # Business Layer
-  eventservice:
-    build: ./business/eventService
-    ports:
-      - "82:82"
-    depends_on:
-      room_and_event-db:
-        condition: service_healthy
-  mediaservice:
-    build: ./business/mediaService
-    ports: 
-      - "83:83"
-  roomservice:
-    build: ./business/roomService
-    ports:
-      - "84:84"
-    depends_on:
-      room_and_event-db:
-        condition: service_healthy
-  weatherservice:
-    build: ./business/weatherService
-    ports:
-      - "85:85"
-
   # Data Layer
   minio:
     image: docker.io/minio/minio
@@ -43,11 +18,6 @@ services:
       interval: 30s
       timeout: 20s
       retries: 3
-  minio_init:
-    build: ./data/minioInit
-    depends_on:
-      minio:
-        condition: service_healthy
   room_and_event-db:
     container_name: room_and_event-db
     image: mysql:latest
