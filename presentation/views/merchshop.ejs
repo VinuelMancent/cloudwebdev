@@ -66,69 +66,6 @@
             margin-bottom: 30px;
         }
     </style>
-    <script>
-        const redisUrl = ""
-        // **************************************************************************************************************
-        // Adds a passed item to the shopping cart, stores the cart, and refreshes its view
-        // **************************************************************************************************************
-        function addItemToShoppingCart(productName, productPrice) {
-            fetch(`${redisUrl}/cart`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(
-                    {
-                        name: productName,
-                        price: productPrice
-                    }
-                )
-            })
-                .then(response => response.json())
-                .then(cartContent => {
-                    shoppingCartContent = cartContent;
-                    refreshShoppingCartView();
-
-                });
-        }
-        // **************************************************************************************************************
-        // Deletes all items in the shopping cart, stores the cart, and refreshes its view
-        // **************************************************************************************************************
-        function deleteShoppingCart() {
-            shoppingCartContent = [];
-            saveShoppingCartToStorage();
-            refreshShoppingCartView();
-        }
-
-        // **************************************************************************************************************
-        // View of the shopping cart gets refreshed with the items currently included in the cart
-        // **************************************************************************************************************
-        function refreshShoppingCartView() {
-            let shoppingCartContentAsString = "";
-            let totalSum = 0;
-            shoppingCartContent.forEach(function (element) {
-                shoppingCartContentAsString += "<li>" + element.name + " (" + element.price + " " + ")</li>";
-                totalSum += parseFloat(element.price);
-            });
-            document.getElementById('shoppingCartContent').innerHTML = "<ul>" + shoppingCartContentAsString + "</ul>";
-            document.getElementById('shoppingCartSum').innerHTML = totalSum.toFixed(2);
-        }
-
-        // **************************************************************************************************************
-        // Shopping cart content is stored in the local storage of the browser
-        // **************************************************************************************************************
-        function loadShoppingCartContentFromStorage() {
-            fetch('http://localhost/cart', {
-                method: 'GET'
-            })
-                .then(response => response.json())
-                .then(cartContent => {
-                    shoppingCartContent = cartContent;
-                    refreshShoppingCartView();
-                });
-        }
-    </script>
 </head>
 
 <body>
@@ -150,7 +87,7 @@
         <div class="img-container"> 
             <img src="/Merch_Cap.png" alt="Merch_Cap 2">
         </div>
-        <div class="model-name">Merch Cap 
+        <div class="product-name">Merch Cap 
             <div class="button-container">
                 <button class="product-button">Produkt anzeigen</button>
             </div>
@@ -161,7 +98,7 @@
         <div class="img-container">
             <img src="/Merch_Pullover.png" alt="Merch_Pullover">
         </div>
-        <div class="model-name">Merch Pullover
+        <div class="product-name">Merch Pullover
             <div class="button-container">
                 <button class="product-button">Produkt anzeigen</button>
             </div>
@@ -172,15 +109,15 @@
         <div class="img-container">
             <img src="/Merch_TShirt_Weiss.png" alt="Merch_TShirt_Weiss">
         </div>
-        <div class="model-name">Merch TShirt Weiss
+        <div class="product-name">Merch TShirt Weiss
             <div class="button-container">
                 <button class="product-button">Produkt anzeigen</button>
             </div>
         </div>
+
     </div>
     
 </div>
 
 </body>
 </html>
-

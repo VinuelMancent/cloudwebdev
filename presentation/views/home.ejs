@@ -1,37 +1,91 @@
 <html>
 <head>
     <style>
-        #mainVideo {
-            height: 500px;
-            background-color: darkgray;
-            border: 5px solid black;
-        }
-        #supercarLocation {
-            height: 300px;
-            background-color: aqua;
-            border: 5px solid blue;
+        body {
             display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        #fullWidth {
-            flex-grow: 1;
+
+        #mainVideo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: darkgray;
+            border: 2px solid black;
+            border-radius: 25px 25px 0 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             width: 100%;
+            max-width: 1500px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        #mainVideo img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #supercarLocation {
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 1500px;
+        margin: 0 auto;
+        margin-bottom: 50px;
+        border: 2px solid rgb(251, 251, 251); /* optional, falls du einen Rahmen um den Container möchtest */
+        border-radius: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #supercarLocation iframe {
+            width: 100%; /* Passt die Breite des iFrame an den Container an */
+            height: 80%;  /*Passt die Höhe des iFrame an den Container an */
+            max-width: 1000px; /* Optional: max-Breite für den iFrame */
+        }
+
+        .navbutton-container {
+            display: flex;
+            border: 2px solid rgb(251, 251, 251);
+            border-radius: 0 0 25px 25px;
+            background-color: rgb(251, 251, 251);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            justify-content: center;
+            width: 100%;
+            margin-top: 0px;
+        }
+
+        .navbutton {
+            padding: 10px 20px;
+            background-color: #333;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
         }
     </style>
 </head>
 <body>
     <div id="mainVideo">
-        
+        <img src="/home_screen.jpeg" alt="Home_screen">
     </div>
-    <form>
-        <button class="navbutton" type="reset" onclick="location.href=`/configurator/hyperion_halo`">
-           Configure your Supercar
-        </button>
-    </form>
-    <h2>Current Location</h2>
+    <div class="navbutton-container">
+        <form>
+            <button class="navbutton" type="reset" onclick="location.href=`/models`">
+               Konfiguriere dein Supercar
+            </button>
+        </form>
+    </div>
+    <h2 style="text-align: center;">Current Location</h2>
     <div id="supercarLocation">
-    <%= location.name %>
-        <iframe class="fullWidth" frameborder=„0“ scrolling=„no“ marginheight=„0“ marginwidth=„0“ src="<%= location.link %>" style="border: 1px solid black"></iframe>
+        <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="<%= location.link %>" style="border: 1px solid black"></iframe>
     </div>
-    
 </body>
 </html>
