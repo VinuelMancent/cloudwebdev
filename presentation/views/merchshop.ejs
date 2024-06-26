@@ -70,12 +70,18 @@
 
 <body>
     <script>
-    function addItemToShoppingcart(item){
+    async function addItemToShoppingcart(item){
+        console.log(`adding item ${JSON.stringify(item)}`)
         const url = "http://localhost:83/pushItem"
-        async () => await fetch(url, {
+        await fetch(url, {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
-            body: JSON.stringify(item), // body data type must match "Content-Type" header
-        });
+            mode: "cors", // no-cors, *cors, same-origin
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify(item)
+        })
     }
     </script>
 <h1>Produkte</h1>
@@ -87,7 +93,7 @@
         </div>
         <div class="product-name">Merch Tasse 
             <div class="button-container">
-                <button class="product-button">Add to shoppingcart</button>
+                <button class="product-button" onclick="addItemToShoppingcart({product: 'tasse', price: 9.99})">Add to shoppingcart</button>
             </div>
         </div>
     </div>
@@ -98,7 +104,7 @@
         </div>
         <div class="product-name">Merch Cap 
             <div class="button-container">
-                <button class="product-button">Add to shoppingcart</button>
+                <button class="product-button" onclick="addItemToShoppingcart({product: 'cap', price: 8.99})">Add to shoppingcart</button>
             </div>
         </div>
     </div>
@@ -109,7 +115,7 @@
         </div>
         <div class="product-name">Merch Pullover
             <div class="button-container">
-                <button class="product-button">Add to shoppingcart</button>
+                <button class="product-button" onclick="addItemToShoppingcart({product: '', price: 39.99})">Add to shoppingcart</button>
             </div>
         </div>
     </div>
@@ -120,7 +126,7 @@
         </div>
         <div class="product-name">Merch TShirt Weiss
             <div class="button-container">
-                <button class="product-button">Add to shoppingcart</button>
+                <button class="product-button" onclick="addItemToShoppingcart({product: 'shirt', price: 9.99})">Add to shoppingcart</button>
             </div>
         </div>
 
