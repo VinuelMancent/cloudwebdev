@@ -9,15 +9,72 @@
             margin: 0px;
             padding: 0px;
         }
-
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
         .container {
             max-width: 900px;
-            margin: 0 auto;
+            width: 70%;
+            margin: 0;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
         }
-
+        .cart_container {
+            width: 20%;
+            border: 2px solid black;
+            margin-bottom: 45%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .cart_list {
+            flex-grow: 1;
+            padding-left: 0px;
+            margin-bottom: 20px; /* Ensure space between list and button */
+        }
+        .cart_item {
+            list-style-type: none;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .cart_total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto; /* Pushes the total and button to the bottom */
+        }
+        .total_label {
+            font-weight: bold;
+        }
+        .total_amount {
+            width: 60px;
+            text-align: right;
+            border: none;
+            background: transparent;
+            font-weight: bold;
+        }
+        .cart_button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .cart_button:hover {
+            background-color: #555;
+        }
         .product {
             width: 45%;
             margin-bottom: 20px;
@@ -94,6 +151,8 @@
 
 <body>
     <script>
+        let total = 0;
+
         async function addItemToShoppingcart(item) {
             console.log(`adding item ${JSON.stringify(item)}`)
             const url = "http://localhost:83/pushItem"
@@ -105,36 +164,60 @@
                     "Access-Control-Allow-Origin": "*",
                 },
                 body: JSON.stringify(item)
-            })
+            });
+            // Add item to the cart list
+            const cartList = document.getElementById("cartList");
+            const listItem = document.createElement("li");
+            listItem.className = "cart_item";
+            listItem.innerText = `${item.product} - $${item.price}`;
+            cartList.appendChild(listItem);
+
+            // Update total
+            total += item.price;
+            document.getElementById("totalAmount").value = total.toFixed(2);
         }
     </script>
     <h1>Produkte</h1>
-    <div class="container">
-        <% merchItems.forEach(product=> { %>
-            <div class="product">
-                <div class="img-container">
-                    <img src="<%= product.image %>" alt="<%= product.name %>">
-                </div>
-                <div class="product-details">
-                    <div class="product-name">
-                        <%= product.name %>
+
+    <div class="main-container">
+        <div class="container">
+            <% merchItems.forEach(product=> { %>
+                <div class="product">
+                    <div class="img-container">
+                        <img src="<%= product.image %>" alt="<%= product.name %>">
                     </div>
-                    <div class="button-container">
-                        <button class="product-button" onclick="addItemToShoppingcart({product: product.name , price: product.price})">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <g fill="none">
-                                    <path fill="currentColor"
-                                        d="M3 2.25a.75.75 0 0 0 0 1.5zM5 3l.748-.058A.75.75 0 0 0 5 2.25zm16 3l.745.083A.75.75 0 0 0 21 5.25zM5.23 6l-.747.058zm13.109 9.119l.053.748zm-10.355.74l-.053-.749zM3 3.75h2v-1.5H3zm5.037 12.856l10.355-.74l-.107-1.495l-10.354.74zm12.892-3.179l.816-7.344l-1.49-.166l-.816 7.345zM4.252 3.057l.231 3l1.496-.115l-.231-3zm.231 3l.617 8.017l1.495-.115l-.616-8.017zM21 5.25H5.23v1.5H21zm-2.608 10.617a2.75 2.75 0 0 0 2.537-2.44l-1.49-.165a1.25 1.25 0 0 1-1.154 1.109zM7.931 15.11a1.25 1.25 0 0 1-1.336-1.15l-1.495.114a2.75 2.75 0 0 0 2.937 2.532z" />
-                                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2.25"
-                                        d="M8.5 20.5h.01v.01H8.5zm9 0h.01v.01h-.01z" />
-                                </g>
-                            </svg>
-                            <%= product.price.toFixed(2).replace('.', ',' ) %>€
-                        </button>
+                    <div class="product-details">
+                        <div class="product-name">
+                            <%= product.name %>
+                        </div>
+                        <div class="button-container">
+                            <button class="product-button" onclick="addItemToShoppingcart({product: '<%= product.name %>', price: '<%= product.price %>'})">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <g fill="none">
+                                        <path fill="currentColor"
+                                            d="M3 2.25a.75.75 0 0 0 0 1.5zM5 3l.748-.058A.75.75 0 0 0 5 2.25zm16 3l.745.083A.75.75 0 0 0 21 5.25zM5.23 6l-.747.058zm13.109 9.119l.053.748zm-10.355.74l-.053-.749zM3 3.75h2v-1.5H3zm5.037 12.856l10.355-.74l-.107-1.495l-10.354.74zm12.892-3.179l.816-7.344l-1.49-.166l-.816 7.345zM4.252 3.057l.231 3l1.496-.115l-.231-3zm.231 3l.617 8.017l1.495-.115l-.616-8.017zM21 5.25H5.23v1.5H21zm-2.608 10.617a2.75 2.75 0 0 0 2.537-2.44l-1.49-.165a1.25 1.25 0 0 1-1.154 1.109zM7.931 15.11a1.25 1.25 0 0 1-1.336-1.15l-1.495.114a2.75 2.75 0 0 0 2.937 2.532z" />
+                                        <path stroke="currentColor" stroke-linejoin="round" stroke-width="2.25"
+                                            d="M8.5 20.5h.01v.01H8.5zm9 0h.01v.01h-.01z" />
+                                    </g>
+                                </svg>
+                                <%= product.price.toFixed(2).replace('.', ',' ) %>€
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
             <% }) %>
+        </div>
+        <div class="cart_container">
+            <ul id="cartList" class="cart_list">
+                <li class="cart_item">Tasse - 9.99€</li>
+                <li class="cart_item">Cap - 8.99€</li>
+            </ul>
+            <div class="cart_total">
+                <span class="total_label">Total:</span>
+                <input type="text" id="totalAmount" class="total_amount" value="18.98" readonly />
+            </div>
+            <button class="cart_button">Buy</button>
+        </div>
     </div>
 </body>
 
