@@ -19,13 +19,9 @@ redisClient.on('error', (err) => {
 
 app.get("/getItems", function (req,res){
     redisClient.get("shoppingcartItems").then(function(value){
-        console.log(1)
         if (value != undefined) {
-            console.log(2)
             allItems = JSON.parse(value)
-            console.log(3)
         }else{
-            console.log(4)
             allItems = []
         }
             res.send(JSON.stringify(allItems))
