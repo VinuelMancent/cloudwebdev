@@ -11,7 +11,7 @@ const PORT = 86
 app.get("/:car", async function (req,res){
     const car = req.params.car
     const tires = [{value: "Sommerreifen", image: ""}, {value: "Winterreifen", image: ""}, {value: "Sportreifen", image: ""}]
-    const rims = [{value: "", image: ""}, {value: "", image: ""}, {value: "", image: ""}]
+    const rims = [{value: "Street Style", image: ""}, {value: "Urban Chic", image: ""}, {value: "Luxury Elite", image: ""}]
 
     const HyperionHalo = {
         colors: [

@@ -353,6 +353,8 @@
     </div>
     <%- include('orderPopup.ejs') %>
     <script>
+        const config = JSON.parse('<%- JSON.stringify(configuration) %>')
+        console.log(config)
         // Select Step
         document.querySelectorAll('.step').forEach(function(step) {
             step.addEventListener('click', function() {
