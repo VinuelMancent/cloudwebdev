@@ -1,11 +1,46 @@
 <html>
 <head>
     <style>
+    select {
+        width: 100%;
+        padding: 16px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: #f1f1f1;
+    }
+    input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+    input[type=button], input[type=submit], input[type=reset] {
+        background-color: #04AA6D;
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
     </style>
 </head>
 <body>
 <h1>Testdrive</h1>
-
-    
+<form>
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name">
+    <label for="strecke">Strecke</label>
+    <select id="strecke" name="strecke" id="strecke">
+        <option value="Hockenheimring">Hockenheimring</option>
+        <option value="Nürburgring">Nürburgring</option>
+    </select>
+    <label for="auto">Auto</label>
+    <select id="auto" name="auto" id="auto">
+        <option value="hyperion_halo">Hyperion Halo</option>
+        <option value="traverse">Traverse</option>
+    </select>
+    <input type="submit" value="Submit">
+</form>
 </body>
 </html>
