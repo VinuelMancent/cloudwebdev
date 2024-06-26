@@ -31,7 +31,28 @@ app.get("/models", function (req, res){
 app.get("/configuratorHyperionHalo", async function (req, res){
     //const response = await fetch("http://localhost:86/HyperionHalo")
     //const jsonresponse = await response.json()
-    const jsonresponse = {"colors":[{"value":"Space Grey","image":"/Hyperion_Halo/space_grey.jpg"},{"value":"Cherry Red","image":"/Hyperion_Halo/cherry_red.jpg"},{"value":"Emerald Green","image":"/Hyperion_Halo/emerald_green.jpg"},{"value":"Ice Blue","image":"/Hyperion_Halo/ice_blue.jpg"}],"tires":[{"value":"Sommerreifen","image":""},{"value":"Winterreifen","image":""},{"value":"Sportreifen","image":""}],"rims":[{"value":"Street Style","image":""},{"value":"Urban Chic","image":""},{"value":"Luxury Elite","image":""}]}
+    const jsonresponse = {
+        "colors":[
+            {"value":"Space Grey",
+            "color": "linear-gradient(90deg, #9ca6af 19%, #515559 50%)",
+            "image":"/Hyperion_Halo/space_grey.jpg"},
+            {"value":"Cherry Red",
+            "color": "linear-gradient(90deg, #e93f45 19%, #9c1518 50%)",
+            "image":"/Hyperion_Halo/cherry_red.jpg"},
+            {"value":"Emerald Green",
+            "color": "linear-gradient(90deg, #00b46c 19%, #017a59 50%)",
+            "image":"/Hyperion_Halo/emerald_green.jpg"},
+            {"value":"Ice Blue",
+            "color": "linear-gradient(90deg, #0084bf 19%, #bddbf5 50%)",
+            "image":"/Hyperion_Halo/ice_blue.jpg"}],
+        "tires":[
+            {"value":"Sommerreifen","image":""},
+            {"value":"Winterreifen","image":""},
+            {"value":"Sportreifen","image":""}],
+        "rims":[
+            {"value":"Street Style","image":"/street_style_rim.png"},
+            {"value":"Urban Chic","image":"/luxury-rim.png"},
+            {"value":"Luxury Elite","image":"/exclusive-rim.png"}]}
     res.render("configuratorHyperionHalo.ejs", { showNavbar: true, configuration: jsonresponse })
 })
 
