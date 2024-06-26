@@ -1,0 +1,69 @@
+services:
+
+  # Business Layer
+  eventservice:
+    build: ./business/eventService
+    ports:
+      - "82:82"
+    depends_on:
+      room_and_event-db:
+        condition: service_healthy
+  mediaservice:
+    build: ./business/mediaService
+    ports: 
+      - "83:83"
+  roomservice:
+    build: ./business/roomService
+    ports:
+      - "84:84"
+    depends_on:
+      room_and_event-db:
+        condition: service_healthy
+  weatherservice:
+    build: ./business/weatherService
+    ports:
+      - "85:85"
+
+  # Data Layer
+  minio:
+    image: docker.io/minio/minio
+    container_name: minio
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    volumes:
+      - './data/minio/data:/data'
+    environment:
+      - MINIO_ROOT_USER=your_username
+      - MINIO_ROOT_PASSWORD=your_pasword
+      - MINIO_DEFAULT_BUCKETS=hotel
+    command: server /export --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+  minio_init:
+    build: ./data/minioInit
+    depends_on:
+      minio:
+        condition: service_healthy
+  room_and_event-db:
+    container_name: room_and_event-db
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: hotel_db
+      MYSQL_USER: hotel
+      MYSQL_PASSWORD: hotel
+    volumes:
+      - ./data/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      retries: 3
+
+volumes:
+  minio_data:
