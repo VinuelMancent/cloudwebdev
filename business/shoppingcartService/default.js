@@ -21,21 +21,30 @@ app.get("/getItems", function (req,res){
     redisClient.get("shoppingcartItems").then(function(value){
         if (value != undefined) {
             allItems = JSON.parse(value)
+        }else{
+            allItems = []
         }
-            res.send(allitems)
+            res.send(JSON.stringify(allItems))
         }
     )
 })
 
-app.post("pushItem/:item", function (req, res){
-    const itemToPush = req.params.item
+app.post("/pushItem", function (req, res){
+    allItems = []
+    console.log(req.body)
+    const itemToPush = req.body
     redisClient.get("shoppingcartItems").then(function(value){
         if (value != undefined) {
             allItems = JSON.parse(value)
         }
         allItems.push(itemToPush)
-        redisClient.set("shoppingcartItems", allitems)
+        redisClient.set("shoppingcartItems", JSON.stringify(allItems))
     })
+    res.sendStatus(200)
+})
+
+app.post("clearItems", function (req, res){
+    redisClient.set("shoppingcartItems", [])
     res.sendStatus(200)
 })
 
