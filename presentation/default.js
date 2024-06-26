@@ -54,14 +54,16 @@ app.get("/configurator/:model", function (req, res){
 })
 
 app.get("/testdrive", async function (req, res){
-    const response = await fetch("http://localhost:82")
-    const jsonresponse = await response.json()
+    //const response = await fetch("http://localhost:82")
+    //const jsonresponse = await response.json()
+    const jsonresponse = {"cars":[{"id":0,"car":""},{"id":1,"car":""},{"id":2,"car":""}],"tracks":[{"id":0,"track":""},{"id":1,"track":""},{"id":2,"track":""}]}
     res.render("testdrive.ejs", { showNavbar: true, carsAndTracks: jsonresponse })
 })
 
 app.get("/merch", async function (req, res){
-    const response = await fetch("http://localhost:85")
-    const jsonresponse = await response.json()
+    //const response = await fetch("http://localhost:85")
+    //const jsonresponse = await response.json()
+    const jsonresponse = [{"name":"Merch Tasse","price":9.99,"image":"http://localhost/Merch_Tasse.png"},{"name":"Merch Cap","price":7.99,"image":"http://localhost/Merch_Cap.png"},{"name":"Merch Pullover","price":27.99,"image":"http://localhost/Merch_Pullover.png"},{"name":"Merch TShirt Weiss","price":12.99,"image":"http://localhost/Merch_TShirt_Weiss.png"}]
     res.render("merchshop.ejs", { showNavbar: true, merchItems: jsonresponse })
 })
 
