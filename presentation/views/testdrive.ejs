@@ -113,8 +113,9 @@
 
                 <label for="auto">Modell</label>
                 <select id="auto" name="auto">
-                    <option value="hyperion_halo">Hyperion Halo</option>
-                    <option value="traverse">Traverse</option>
+                    <% for(var i = 0; i < carsAndTracks.cars.length; i++) { %>
+                        <option value="<%=carsAndTracks.cars[i].car %>"><%=carsAndTracks.cars[i].car %></option>
+                    <% } %>
                 </select>
 
                 <label for="datum">Datum und Uhrzeit</label>
