@@ -40,7 +40,8 @@ app.get("/orderPopup", function (req, res){
 });
 
 app.get("/configurator/:model", function (req, res){
-    res.render("configurator.ejs", { showNavbar: true }, {
+    res.render("configurator.ejs", { 
+        showNavbar: true ,
         model:  req.params.model, 
     })
 })
