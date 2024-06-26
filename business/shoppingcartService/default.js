@@ -19,31 +19,24 @@ redisClient.on('error', (err) => {
 })
 
 app.get("/getItems", function (req,res){
+    allItems = []
     redisClient.get("shoppingcartItems").then(function(value){
         if (value != undefined) {
-            allItems = JSON.parse(value)
+            allItems =JSON.parse(value)
+            fullPrice = 0
+            for(const item of allItems){
+                fullPrice += Number.parseFloat(item.price)
+            }
         }else{
             allItems = []
         }
             res.setHeader("Access-Control-Allow-Origin", "*")
-            res.send(JSON.stringify(allItems))
+            res.send(JSON.stringify({allItems: allItems, price: fullPrice.toFixed(2)}))
         }
     )
 })
 
 app.post("/pushItem", function (req, res){
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', '*');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
     allItems = []
     console.log(req.body)
     const itemToPush = req.body
@@ -58,8 +51,8 @@ app.post("/pushItem", function (req, res){
     res.sendStatus(200)
 })
 
-app.post("clearItems", function (req, res){
-    redisClient.set("shoppingcartItems", [])
+app.post("/clearItems", function (req, res){
+    redisClient.set("shoppingcartItems", JSON.stringify([]))
     res.sendStatus(200)
 })
 
