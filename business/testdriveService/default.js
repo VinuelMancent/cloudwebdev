@@ -9,22 +9,16 @@ const PORT = 82
 
 
 app.get("/", async function (req,res){
-    const connection_cars = await mysql.createConnection({
-        host: 'hhzcar',
+    const connection = await mysql.createConnection({
+        host: 'localhost',
         user: 'hhz',
         password: 'car',
-        database: 'testdrive_cars'
-    })
-    const connection_tracks = await mysql.createConnection({
-        host: 'hhzcar',
-        user: 'hhz',
-        password: 'car',
-        database: 'testdrive_tracks'
+        database: 'merchandise_db'
     })
     try {
         // Daten aus der Tabelle "testdrive" abrufen
-        const [cars] = await connection_cars.query('SELECT * FROM testdrive_cars')
-        const [tracks] = await connection_tracks.query('SELECT * FROM testdrive_tracks')
+        const [cars] = await connection.query('SELECT * FROM testdrive_cars')
+        const [tracks] = await connection.query('SELECT * FROM testdrive_tracks')
         res.setHeader("Access-Control-Allow-Origin", "*")
         res.json({cars: cars, tracks: tracks})
     } catch (error) {

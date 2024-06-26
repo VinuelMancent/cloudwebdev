@@ -46,15 +46,19 @@ app.get("/configurator/:model", function (req, res){
     })
 })
 
-app.get("/testdrive", function (req, res){
-    res.render("testdrive.ejs", { showNavbar: true })
+app.get("/testdrive", async function (req, res){
+    const response = await fetch("http://localhost:82")
+    const jsonresponse = await response.json()
+    res.render("testdrive.ejs", { showNavbar: true, carsAndTracks: jsonresponse })
 })
 
-app.get("/merch", function (req, res){
-    res.render("merchshop.ejs", { showNavbar: true })
+app.get("/merch", async function (req, res){
+    const response = await fetch("http://localhost:85")
+    const jsonresponse = await response.json()
+    res.render("merchshop.ejs", { showNavbar: true, merchItems: jsonresponse })
 })
 
 app.listen(PORT, function (err) {
     if (err) console.log(err);
-    console.log("Server listening on PORT", PORT);
-});
+    console.log("Server listening on PORT", PORT)
+})
