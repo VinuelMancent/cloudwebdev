@@ -105,16 +105,16 @@
             <form>
                 <label for="strecke">Rennstrecke</label>
                 <select id="strecke" name="strecke">
-                    <option value="Hockenheimring">Hockenheimring</option>
-                    <option value="Nürburgring">Nürburgring</option>
-                    <option value="Lausitzring">Lausitzring</option>
-                    <option value="Sachsenring">Lausitzring</option>
+                    <% for(var i = 0; i < carsAndTracks.tracks.length; i++) { %>
+                        <option value="<%=carsAndTracks.tracks[i].track %>"><%=carsAndTracks.tracks[i].track %></option>
+                    <% } %>
                 </select>
 
                 <label for="auto">Modell</label>
                 <select id="auto" name="auto">
-                    <option value="hyperion_halo">Hyperion Halo</option>
-                    <option value="traverse">Traverse</option>
+                    <% for(var i = 0; i < carsAndTracks.cars.length; i++) { %>
+                        <option value="<%=carsAndTracks.cars[i].car %>"><%=carsAndTracks.cars[i].car %></option>
+                    <% } %>
                 </select>
 
                 <label for="datum">Datum und Uhrzeit</label>

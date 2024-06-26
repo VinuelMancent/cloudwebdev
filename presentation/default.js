@@ -27,12 +27,16 @@ app.get("/models", function (req, res){
     res.render("models.ejs", { showNavbar: true })
 })
 
-app.get("/configuratorHyperionHalo", function (req, res){
-    res.render("configuratorHyperionHalo.ejs", { showNavbar: true })
+app.get("/configuratorHyperionHalo", async function (req, res){
+    const response = await fetch("http://localhost:86/HyperionHalo")
+    const jsonresponse = await response.json()
+    res.render("configuratorHyperionHalo.ejs", { showNavbar: true, configuration: jsonresponse })
 })
 
-app.get("/configuratorTraverse", function (req, res){
-    res.render("configuratorTraverse.ejs", { showNavbar: true })
+app.get("/configuratorTraverse", async function (req, res){
+    const response = await fetch("http://localhost:86/Traverse")
+    const jsonresponse = await response.json()
+    res.render("configuratorTraverse.ejs", { showNavbar: true, configuration: jsonresponse })
 })
 
 app.get("/orderPopup", function (req, res){
