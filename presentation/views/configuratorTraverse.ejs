@@ -382,8 +382,9 @@
             option.addEventListener("click", function(event) {
                 event.stopPropagation();
     
-                var selectedTire = document.getElementById("selectedTire");
-                var tireName = this.parentNode.querySelector('.option-name').textContent;
+                var tireName = event.currentTarget.children[1].innerText;
+                selectedTire.textContent = tireName;
+
                 selectedTire.textContent = tireName;
     
                 var allOptions = this.closest('.step-content').querySelectorAll('.wheel-option');
@@ -402,8 +403,7 @@
             option.addEventListener("click", function(event) {
                 event.stopPropagation();
 
-                var selectedRim = document.getElementById("selectedRim");
-                var rimName = this.parentNode.querySelector('.option-name').textContent;
+                var rimName = event.currentTarget.children[1].innerText;
                 selectedRim.textContent = rimName;
     
                 var allOptions = this.closest('.step-content').querySelectorAll('.rim-option');
