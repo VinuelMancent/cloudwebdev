@@ -288,49 +288,30 @@
                         </div>
                         <div class="step-content" id="<%= step.contentId %>">
                             <% if(index===0) { %>
-                                <div class="color-option">
-                                    <div class="color-box"
-                                        style="background-image:linear-gradient(90deg, #4b4a4a 19%, #000000 50%);"></div>
-                                    <div class="color-name">Black Panther</div>
-                                </div>
-                                <div class="color-option">
-                                    <div class="color-box color-border" style="background-image:linear-gradient(90deg, #e3f0ff 19%, #ffffff 50%);">
+                                <% configuration.colors.forEach(color => { %>
+                                    <div class="color-option <% if (color.value === 'Black Panther') { %>selected<% } %>"
+                                         data-color-name="<%= color.value %>"
+                                         data-color-image="<%= color.image %>">
+                                         <div class="color-box" style="background-image: <%= color.color %>"></div>
+                                        <div class="color-name"><%= color.value %></div>
                                     </div>
-                                    <div class="color-name">Crystal White</div>
-                                </div>
-                                <div class="color-option">
-                                    <div class="color-box" style="background-image:linear-gradient(90deg, #faa95e 19%, #ff7b00 50%);">
-                                    </div>
-                                    <div class="color-name">Orange Juice</div>
-                                </div>
+                                <% }); %>
                                 <% } %>
                             <% if(index===1) { %>
-                                <div class="wheel-option">
-                                    <div class="wheel-image winter"></div>
-                                    <div class="option-name">Winterräder</div>
-                                </div>
-                                <div class="wheel-option">
-                                    <div class="wheel-image summer"></div>
-                                    <div class="option-name">Sommerreifen</div>
-                                </div>
-                                <div class="wheel-option">
-                                    <div class="wheel-image sport"></div>
-                                    <div class="option-name">Sportreifen</div>
-                                </div>
+                                <% configuration.tires.forEach((tire, index) => { %>
+                                    <div class="wheel-option">
+                                        <div class="wheel-image"><%= tire.image %></div>
+                                        <div class="option-name"><%= tire.value %></div>
+                                    </div>
+                                <% }); %>
                                 <% } %>
                                 <% if(index===2) { %>
-                                    <div class="rim-option">
-                                        <div class="rim-image budget"></div>
-                                        <div class="option-name">Street Style</div>
-                                    </div>
-                                    <div class="rim-option">
-                                        <div class="rim-image mid-range"></div>
-                                        <div class="option-name">Urban Chic</div>
-                                    </div>
-                                    <div class="rim-option">
-                                        <div class="rim-image premium"></div>
-                                        <div class="option-name">Luxury Elite</div>
-                                    </div>
+                                    <% configuration.rims.forEach((rim, index) => { %>
+                                        <div class="rim-option">
+                                            <div class="rim-image"><%= rim.image %></div>
+                                            <div class="option-name"><%= rim.value %></div>
+                                        </div>
+                                    <% }); %>
                                 <% } %>
                                 <% if(index === 3) { %>
                                     <div class="order-overview">
@@ -370,33 +351,28 @@
             });
         });
     
-        //  Select Color
+        // Select Color
         var colorOptions = document.querySelectorAll('.color-option');
-        colorOptions.forEach(function(option) {
-            option.addEventListener("click", function(event) {
+
+        colorOptions.forEach(function (option) {
+            option.addEventListener("click", function (event) {
                 event.stopPropagation();
-    
+
                 var allColorBoxes = document.querySelectorAll('.color-option');
-                allColorBoxes.forEach(function(box) {
+                allColorBoxes.forEach(function (box) {
                     box.classList.remove("selected");
                 });
-    
+
                 this.classList.add("selected");
-    
-                var colorName = this.querySelector(".color-name").textContent;
+
+                var colorName = this.dataset.colorName;
+                var colorImage = this.dataset.colorImage;
+
                 var carImage = document.getElementById("car-image");
-    
-                if (colorName === "Black Panther") {
-                    carImage.src = "/Traverse/black_panther.jpg";
-                } else if (colorName === "Crystal White") {
-                    carImage.src = "/Traverse/crystal_white.jpg";
-                } else if (colorName === "Orange Juice") {
-                    carImage.src = "/Traverse/orange_juice.jpg";
-                }
-    
+                carImage.src = colorImage;
+
                 var selectedColor = document.getElementById("selectedColor");
                 selectedColor.textContent = colorName;
-    
             });
         });
     

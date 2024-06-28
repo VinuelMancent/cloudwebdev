@@ -46,20 +46,44 @@ app.get("/configuratorHyperionHalo", async function (req, res){
             "color": "linear-gradient(90deg, #0084bf 19%, #bddbf5 50%)",
             "image":"/Hyperion_Halo/ice_blue.jpg"}],
         "tires":[
-            {"value":"Sommerreifen","image":""},
-            {"value":"Winterreifen","image":""},
-            {"value":"Sportreifen","image":""}],
+            {"value":"Sommerreifen","image":"standard_wheel.jpeg"},
+            {"value":"Winterreifen","image":"standard_wheel.jpeg"},
+            {"value":"Sportreifen","image":"sport_wheel.jpeg"}],
         "rims":[
-            {"value":"Street Style","image":"/street_style_rim.png"},
-            {"value":"Urban Chic","image":"/luxury-rim.png"},
-            {"value":"Luxury Elite","image":"/exclusive-rim.png"}]}
+            {"value":"Street Style",
+            "image":"/street_style_rim.png"},
+            {"value":"Urban Chic",
+            "image":"/luxury-rim.png"},
+            {"value":"Luxury Elite",
+            "image":"/exclusive-rim.png"}]}
     res.render("configuratorHyperionHalo.ejs", { showNavbar: true, configuration: jsonresponse })
 })
 
 app.get("/configuratorTraverse", async function (req, res){
     //const response = await fetch("http://localhost:86/Traverse")
     //const jsonresponse = await response.json()
-    const jsonresponse = {"colors":[{"value":"Space Grey","image":"/Hyperion_Halo/space_grey.jpg"},{"value":"Cherry Red","image":"/Hyperion_Halo/cherry_red.jpg"},{"value":"Emerald Green","image":"/Hyperion_Halo/emerald_green.jpg"},{"value":"Ice Blue","image":"/Hyperion_Halo/ice_blue.jpg"}],"tires":[{"value":"Sommerreifen","image":""},{"value":"Winterreifen","image":""},{"value":"Sportreifen","image":""}],"rims":[{"value":"Street Style","image":""},{"value":"Urban Chic","image":""},{"value":"Luxury Elite","image":""}]}
+    const jsonresponse = 
+    {"colors":[
+        {"value":"Black Panther",
+        "color": "linear-gradient(90deg, #4b4a4a 19%, #000000 50%)",
+        "image":"/Traverse/black_panther.jpg"},
+        {"value":"Cryistal White",
+        "color": "linear-gradient(90deg, #e3f0ff 19%, #ffffff 50%)",
+        "image":"/Traverse/crystal_white.jpg"},
+        {"value":"Orange Juice",
+        "color": "linear-gradient(90deg, #faa95e 19%, #ff7b00 50%)",
+        "image":"/Traverse/orange_juice.jpg"}],
+    "tires":[
+        {"value":"Sommerreifen","image":"/standard_wheel.jpeg"},
+        {"value":"Winterreifen","image":"/standard_wheel.jpeg"},
+        {"value":"Sportreifen","image":"/sport_wheel.jpeg"}],
+    "rims":[
+        {"value":"Street Style",
+        "image":"/street_style_rim.png"},
+        {"value":"Urban Chic",
+        "image":"/luxury-rim.png"},
+        {"value":"Luxury Elite",
+        "image":"/exclusive-rim.png"}]}
     res.render("configuratorTraverse.ejs", { showNavbar: true, configuration: jsonresponse })
 })
 
