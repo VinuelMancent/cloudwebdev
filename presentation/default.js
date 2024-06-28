@@ -101,7 +101,7 @@ app.get("/configurator/:model", function (req, res){
 app.get("/testdrive", async function (req, res){
     //const response = await fetch("http://localhost:82")
     //const jsonresponse = await response.json()
-    const jsonresponse = {"cars":[{"id":0,"car":""},{"id":1,"car":""},{"id":2,"car":""}],"tracks":[{"id":0,"track":""},{"id":1,"track":""},{"id":2,"track":""}]}
+    const jsonresponse = {"cars":[{"id":0,"car":"Hyperion Halo"},{"id":1,"car":"Traverse"}],"tracks":[{"id":0,"track":"Nürburgring"},{"id":1,"track":"Hockenheimring"},{"id":2,"track":"Lausitzring"},{"id":3,"track":"Sachsenring"}]}
     res.render("testdrive.ejs", { showNavbar: true, carsAndTracks: jsonresponse })
 })
 
