@@ -20,6 +20,7 @@ redisClient.on('error', (err) => {
 
 app.get("/getItems", function (req,res){
     allItems = []
+    console.log("returning all shoppingcart items")
     redisClient.get("shoppingcartItems").then(function(value){
         if (value != undefined) {
             allItems =JSON.parse(value)
@@ -40,12 +41,14 @@ app.post("/pushItem", function (req, res){
     allItems = []
     console.log(req.body)
     const itemToPush = req.body
+    console.log(`pushing item: ${JSON.stringify(itemToPush)}`)
     redisClient.get("shoppingcartItems").then(function(value){
         if (value != undefined) {
             allItems = JSON.parse(value)
         }
         allItems.push(itemToPush)
         redisClient.set("shoppingcartItems", JSON.stringify(allItems))
+        console.log(`full shoppingcart: ${JSON.stringify(allItems)}`)
     })
     res.setHeader("Access-Control-Allow-Origin", "*")
     res.sendStatus(200)

@@ -149,7 +149,7 @@
     </style>
 </head>
 
-<body>
+<body onload="refreshShoppingCart()">
     <script>
         let total = 0;
 
@@ -164,17 +164,34 @@
                     "Access-Control-Allow-Origin": "*",
                 },
                 body: JSON.stringify(item)
-            });
-            // Add item to the cart list
-            const cartList = document.getElementById("cartList");
-            const listItem = document.createElement("li");
-            listItem.className = "cart_item";
-            listItem.innerText = `${item.product} - $${item.price}`;
-            cartList.appendChild(listItem);
+            })
+            await refreshShoppingCart()
+        }
 
+        async function refreshShoppingCart(){
+            const url = "http://localhost:83/getItems"
+            const response = await fetch(url, {
+                method: "GET", // *GET, POST, PUT, DELETE, etc.
+                mode: "cors", // no-cors, *cors, same-origin
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                }
+            })
+
+            const items = await response.json()
+            const cartList = document.getElementById("cartList")
+            cartList.innerHTML = ""
+            for(const item of items.allItems){
+                // Add item to the cart list
+                
+                const listItem = document.createElement("li");
+                listItem.className = "cart_item";
+                listItem.innerText = `${item.product} - $${item.price}`;
+                cartList.appendChild(listItem);
+            }
             // Update total
-            total += item.price;
-            document.getElementById("totalAmount").value = total.toFixed(2);
+            document.getElementById("totalAmount").value = items.price
         }
     </script>
     <h1>Produkte</h1>
@@ -209,12 +226,11 @@
         </div>
         <div class="cart_container">
             <ul id="cartList" class="cart_list">
-                <li class="cart_item">Tasse - 9.99€</li>
-                <li class="cart_item">Cap - 8.99€</li>
+                
             </ul>
             <div class="cart_total">
                 <span class="total_label">Total:</span>
-                <input type="text" id="totalAmount" class="total_amount" value="18.98" readonly />
+                <input type="text" id="totalAmount" class="total_amount" value="0.00" readonly />
             </div>
             <button class="cart_button">Buy</button>
         </div>
