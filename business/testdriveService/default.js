@@ -11,7 +11,7 @@ const PORT = 82
 
 app.get("/", async function (req,res){
     const connection = await mysql.createConnection({
-        host: 'localhost',
+        host: 'car_db',
         user: 'hhz',
         password: 'car',
         database: 'merchandise_db'
