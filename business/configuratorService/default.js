@@ -22,18 +22,12 @@ app.get("/:car", async function (req,res){
         // Daten aus der Tabelle "testdrive" abrufen
         const table = car=="HyperionHalo" ? "hyperion":"traverse"
         const query = `SELECT * FROM configurator_${table}`
-        console.log(`query: ${query}`)
         const [items] = await connection.query(query)
-        console.log(items)
-        items.forEach(item =>{
-            console.log(JSON.stringify(item))
-        })
         const result = items.map(row => ({
             config: row.config
         }))
-        console.log(result.config)
         res.setHeader("Access-Control-Allow-Origin", "*")
-        res.json(result.config)
+        res.json(result[0].config)
     } catch (error) {
         console.error('Fehler beim Abrufen der Daten:', error)
     }
