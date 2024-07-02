@@ -29,10 +29,10 @@ CREATE TABLE configurator_hyperion (
 -- Füge die Zimmerdaten ein
 INSERT INTO merchItems (id, name, price, image)
 VALUES
-    (0, 'Merch Tasse', 9.99, 'http://localhost/Merch_Tasse.png'),
-    (1, 'Merch Cap', 7.99, 'http://localhost/Merch_Cap.png'),
-    (2, 'Merch Pullover', 27.99, 'http://localhost/Merch_Pullover.png'),
-    (3, 'Merch TShirt Weiss', 12.99, 'http://localhost/Merch_TShirt_Weiss.png');
+    (0, 'Merch Tasse', 9.99, 'http://localhost:9000/hhz/Merch_Tasse.png'),
+    (1, 'Merch Cap', 7.99, 'http://localhost:9000/hhz/Merch_Cap.png'),
+    (2, 'Merch Pullover', 27.99, 'http://localhost:9000/hhz/Merch_Pullover.png'),
+    (3, 'Merch TShirt Weiss', 12.99, 'http://localhost:9000/hhz/Merch_TShirt_Weiss.png');
 
 INSERT INTO testdrive_cars (id, car)
 VALUES
@@ -51,21 +51,21 @@ VALUES
     (0, '{"colors":[
         {"value":"Black Panther",
         "color": "linear-gradient(90deg, #4b4a4a 19%, #000000 50%)",
-        "image":"/Traverse/black_panther.jpg"},
+        "image":"http://localhost:9000/hhz/Traverse/black_panther.jpg"},
         {"value":"Cryistal White",
         "color": "linear-gradient(90deg, #e3f0ff 19%, #ffffff 50%)",
-        "image":"/Traverse/crystal_white.jpg"},
+        "image":"http://localhost:9000/hhz/Traverse/crystal_white.jpg"},
         {"value":"Orange Juice",
         "color": "linear-gradient(90deg, #faa95e 19%, #ff7b00 50%)",
-        "image":"/Traverse/orange_juice.jpg"}],
+        "image":"http://localhost:9000/hhz/Traverse/orange_juice.jpg"}],
     "tires":[
-        {"value":"Sommerreifen","image":"/standard_wheel.jpeg"},
-        {"value":"Winterreifen","image":"/standard_wheel.jpeg"},
-        {"value":"Sportreifen","image":"/sport_wheel.jpeg"}],
+        {"value":"Sommerreifen","image":"http://localhost:9000/hhz/standard_wheel.jpeg"},
+        {"value":"Winterreifen","image":"http://localhost:9000/hhz/standard_wheel.jpeg"},
+        {"value":"Sportreifen","image":"http://localhost:9000/hhz/sport_wheel.jpeg"}],
     "rims":[
         {"value":"Street Style",
-        "image":"/street_style_rim.png"},
+        "image":"http://localhost:9000/hhz/street_style_rim.png"},
         {"value":"Urban Chic",
-        "image":"/luxury-rim.png"},
+        "image":"http://localhost:9000/hhz/luxury-rim.png"},
         {"value":"Luxury Elite",
-        "image":"/exclusive-rim.png"}]}');
+        "image":"http://localhost:9000/hhz/exclusive-rim.png"}]}');
