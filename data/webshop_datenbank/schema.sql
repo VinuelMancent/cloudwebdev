@@ -41,7 +41,7 @@ VALUES
 
 INSERT INTO testdrive_tracks (id, track)
 VALUES
-    (0, "Nürburgring"),
+    (0, "Nuerburgring"),
     (1, "Hockenheimring"),
     (2, "Lausitzring"),
     (3, "Sachsenring");
