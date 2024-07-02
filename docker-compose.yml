@@ -50,6 +50,11 @@ services:
       interval: 30s
       timeout: 20s
       retries: 3
+  minio_init:
+    build: ./data/minioInit
+    depends_on:
+      minio:
+        condition: service_healthy
   car_db:
     container_name: car_db
     image: mysql:latest
