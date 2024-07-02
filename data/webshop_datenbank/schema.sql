@@ -61,7 +61,7 @@ VALUES
     "tires":[
         {"value":"Sommerreifen","image":"http://localhost:9000/hhz/standard_wheel.jpeg"},
         {"value":"Winterreifen","image":"http://localhost:9000/hhz/standard_wheel.jpeg"},
-        {"value":"Sportreifen","image":"http://localhost:9000/hhz/sport_wheel.jpeg"}],
+        {"value":"Sportreifen","image":"http://localhost:9000/hhz/sport-wheel.jpeg"}],
     "rims":[
         {"value":"Street Style",
         "image":"http://localhost:9000/hhz/street_style_rim.png"},
@@ -76,24 +76,24 @@ VALUES
         "colors":[
             {"value":"Space Grey",
             "color": "linear-gradient(90deg, #9ca6af 19%, #515559 50%)",
-            "image":"/Hyperion_Halo/space_grey.jpg"},
+            "image":"http://localhost:9000/hhz/Hyperion_Halo/space_grey.jpg"},
             {"value":"Cherry Red",
             "color": "linear-gradient(90deg, #e93f45 19%, #9c1518 50%)",
-            "image":"/Hyperion_Halo/cherry_red.jpg"},
+            "image":"http://localhost:9000/hhz/Hyperion_Halo/cherry_red.jpg"},
             {"value":"Emerald Green",
             "color": "linear-gradient(90deg, #00b46c 19%, #017a59 50%)",
-            "image":"/Hyperion_Halo/emerald_green.jpg"},
+            "image":"http://localhost:9000/hhz/Hyperion_Halo/emerald_green.jpg"},
             {"value":"Ice Blue",
             "color": "linear-gradient(90deg, #0084bf 19%, #bddbf5 50%)",
-            "image":"/Hyperion_Halo/ice_blue.jpg"}],
+            "image":"http://localhost:9000/hhz/Hyperion_Halo/ice_blue.jpg"}],
         "tires":[
-            {"value":"Sommerreifen","image":"standard_wheel.jpeg"},
-            {"value":"Winterreifen","image":"standard_wheel.jpeg"},
-            {"value":"Sportreifen","image":"sport_wheel.jpeg"}],
+            {"value":"Sommerreifen","image":"http://localhost:9000/hhz/standard_wheel.jpeg"},
+            {"value":"Winterreifen","image":"http://localhost:9000/hhz/standard_wheel.jpeg"},
+            {"value":"Sportreifen","image":"http://localhost:9000/hhz/sport-wheel.jpeg"}],
         "rims":[
             {"value":"Street Style",
-            "image":"/street_style_rim.png"},
+            "image":"http://localhost:9000/hhz/street_style_rim.png"},
             {"value":"Urban Chic",
-            "image":"/luxury-rim.png"},
+            "image":"http://localhost:9000/hhz/luxury-rim.png"},
             {"value":"Luxury Elite",
-            "image":"/exclusive-rim.png"}]}');
+            "image":"http://localhost:9000/hhz/exclusive-rim.png"}]}');

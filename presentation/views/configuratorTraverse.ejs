@@ -300,7 +300,7 @@
                             <% if(index===1) { %>
                                 <% configuration.tires.forEach((tire, index) => { %>
                                     <div class="wheel-option">
-                                        <div class="wheel-image"><%= tire.image %></div>
+                                        <div class="wheel-image"><img class="wheel-image" src="<%= tire.image %>"/></div>
                                         <div class="option-name"><%= tire.value %></div>
                                     </div>
                                 <% }); %>
@@ -308,7 +308,7 @@
                                 <% if(index===2) { %>
                                     <% configuration.rims.forEach((rim, index) => { %>
                                         <div class="rim-option">
-                                            <div class="rim-image"><%= rim.image %></div>
+                                            <div class="rim-image"><img class="rim-image" src="<%= rim.image %>"/></div>
                                             <div class="option-name"><%= rim.value %></div>
                                         </div>
                                     <% }); %>
