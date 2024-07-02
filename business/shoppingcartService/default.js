@@ -56,6 +56,7 @@ app.post("/pushItem", function (req, res){
 
 app.post("/clearItems", function (req, res){
     redisClient.set("shoppingcartItems", JSON.stringify([]))
+    res.setHeader("Access-Control-Allow-Origin", "*")
     res.sendStatus(200)
 })
 

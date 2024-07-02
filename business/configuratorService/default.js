@@ -2,6 +2,7 @@ const express = require("express")
 const app = express();
 app.use(express.static("public"))
 app.use(express.json())
+const cors = require('cors')
 const mysql = require('mysql2/promise')
 
 const PORT = 86
@@ -29,6 +30,7 @@ app.get("/:car", async function (req,res){
             {value: "Ice Blue", image: "/Hyperion_Halo/ice_blue.jpg"}
         ], tires, rims       
     }
+    res.setHeader("Access-Control-Allow-Origin", "*")
     if(car == "HyperionHalo"){
         res.json(HyperionHalo)
     } else if(car == "Traverse"){
@@ -37,6 +39,13 @@ app.get("/:car", async function (req,res){
         res.sendStatus(404)
     }
 })
+
+const corsOptions = {
+    origin: '*',//(https://your-client-app.com)
+    optionsSuccessStatus: 200,
+}
+ 
+app.use(cors(corsOptions))
 
 app.listen(PORT, function (err) {
     if (err) console.log(err);

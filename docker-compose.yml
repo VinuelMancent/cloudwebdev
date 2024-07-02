@@ -1,4 +1,36 @@
 services:
+  # Presentation Layer
+  frontend:
+    build: ./presentation
+    container_name: frontend
+    ports:
+      - "80:80"
+  # Business Layer
+  locationservice:
+    build: ./business/locationService
+    container_name: "locationservice"
+    ports:
+      - "81:81"
+  testdriveservice:
+    build: ./business/testdriveService
+    container_name: "testdriveservice"
+    ports:
+      - "82:82"
+  shoppingcartservice:
+    build: ./business/shoppingcartservice
+    container_name: shoppingcartservice
+    ports:
+      - "83:83"
+  merchitemsservice:
+    build: ./business/merchItemsService
+    container_name: "merchitemsservice"
+    ports:
+      - "85:85"
+  configuratorService:
+    build: ./business/configuratorService
+    container_name: "configuratorservice"
+    ports:
+      - "86:86"  
   # Data Layer
   minio:
     image: docker.io/minio/minio
@@ -18,8 +50,8 @@ services:
       interval: 30s
       timeout: 20s
       retries: 3
-  room_and_event-db:
-    container_name: room_and_event-db
+  car_db:
+    container_name: car_db
     image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: root_password

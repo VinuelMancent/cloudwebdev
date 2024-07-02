@@ -2,6 +2,8 @@ const express = require("express")
 const app = express();
 app.use(express.static("public"))
 app.use(express.json())
+const cors = require('cors')
+
 
 const PORT = 81
 const mexiko = {"name": "Mexiko Cancun", "lat": 21.17429, "long": -86.84656}
@@ -23,8 +25,17 @@ app.get("/", function (req,res){
     item.longmax = item.long + longrange
     item.link = `https://www.openstreetmap.org/export/embed.html?bbox=${item.longmin},${item.latmin},${item.longmax},${item.latmax}&amp;layer=mapnik`
     console.log(JSON.stringify(item))
+    res.setHeader("Access-Control-Allow-Origin", "*")
     res.send(JSON.stringify(item))
 });
+
+const corsOptions = {
+    origin: '*',//(https://your-client-app.com)
+    optionsSuccessStatus: 200,
+}
+ 
+app.use(cors(corsOptions))
+
 
 app.listen(PORT, function (err) {
     if (err) console.log(err);
