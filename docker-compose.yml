@@ -17,7 +17,7 @@ services:
     ports:
       - "82:82"
   shoppingcartservice:
-    build: ./business/shoppingcartservice
+    build: ./business/shoppingcartService
     container_name: shoppingcartservice
     ports:
       - "83:83"
@@ -26,7 +26,7 @@ services:
     container_name: "merchitemsservice"
     ports:
       - "85:85"
-  configuratorService:
+  configuratorservice:
     build: ./business/configuratorService
     container_name: "configuratorservice"
     ports:
@@ -59,7 +59,7 @@ services:
       MYSQL_USER: hotel
       MYSQL_PASSWORD: hotel
     volumes:
-      - ./data/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./data/webshop_datenbank/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     ports:
       - "3306:3306"
     healthcheck:
