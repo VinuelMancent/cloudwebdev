@@ -232,9 +232,21 @@
                 <span class="total_label">Total:</span>
                 <input type="text" id="totalAmount" class="total_amount" value="0.00" readonly />
             </div>
-            <button class="cart_button">Buy</button>
+            <button id="cart_button" class="cart_button">Buy</button>
         </div>
     </div>
+
+    <script>
+        document.getElementById('cart_button').addEventListener('click', function () {
+            fetch('/merchOrderPopup')
+                .then(response => response.text())
+                .then(html => {
+                    document.body.insertAdjacentHTML('beforeend', html);
+                    document.getElementById('merchOrderPopup').style.display = 'block';
+                })
+                .catch(error => console.error('Error fetching popup:', error));
+        });
+    </script>
 </body>
 
 </html>

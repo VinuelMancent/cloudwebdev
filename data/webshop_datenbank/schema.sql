@@ -1,4 +1,3 @@
--- Erstelle die Tabelle "rooms"
 CREATE TABLE merchItems (
     id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -26,7 +25,6 @@ CREATE TABLE configurator_hyperion (
     config JSON
 );
 
--- Füge die Zimmerdaten ein
 INSERT INTO merchItems (id, name, price, image)
 VALUES
     (0, 'Merch Tasse', 9.99, 'http://localhost:9000/hhz/Merch_Tasse.png'),

@@ -43,6 +43,10 @@ app.get("/orderPopup", function (req, res){
     res.render("orderPopup.ejs", { showNavbar: false })
 });
 
+app.get("/merchOrderPopup", function (req, res){
+    res.render("merchOrderPopup.ejs", { showNavbar: false})
+})
+
 app.get("/configurator/:model", function (req, res){
     res.render("configurator.ejs", { 
         showNavbar: true ,
